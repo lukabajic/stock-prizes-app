@@ -21,7 +21,7 @@ import {
   SectionHeaderComponent,
   SectionSeparator,
 } from "@/components/home/List";
-import { Loader } from "@/components/Loader";
+import { Loader } from "@/components/ui/Loader";
 import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function HomeScreen() {
