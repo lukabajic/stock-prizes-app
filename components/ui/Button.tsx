@@ -4,7 +4,6 @@ import {
   TouchableOpacityProps,
   StyleSheet,
   Text,
-  StyleSheetProperties,
 } from "react-native";
 import { StylePropsWithArrayTransform } from "react-native-reanimated/lib/typescript/layoutReanimation/animationBuilder/commonTypes";
 
