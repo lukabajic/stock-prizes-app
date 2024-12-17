@@ -1,12 +1,19 @@
-import { StyleSheet } from "react-native";
+import { SectionList, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { fetchTopGainersLosers } from "@/services/alphavantage";
-import { useCallback, useEffect, useState } from "react";
-import { MarketData } from "@/types/marketData";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { MarketData, Ticker } from "@/types/marketData";
 import { ErrorMessages } from "@/utils/constants";
+import { ListItem } from "@/components/home/ListItem";
+import {
+  ItemSeparator,
+  SectionHeaderComponent,
+  SectionSeparator,
+} from "@/components/home/List";
 
 export default function HomeScreen() {
   const [data, setData] = useState<MarketData | null>(null);
@@ -34,26 +41,55 @@ export default function HomeScreen() {
     }
   }, [loading]);
 
-  return (
-    <ParallaxScrollView>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Home</ThemedText>
-      </ThemedView>
+  const sections = data
+    ? [
+        {
+          title: "Top Gainers",
+          data: data.top_gainers,
+        },
+        {
+          title: "Top Losers",
+          data: data.top_losers,
+        },
+        {
+          title: "Most Actively Traded",
+          data: data.most_actively_traded,
+        },
+      ]
+    : [];
 
-      {loading ? (
-        <ThemedText>Loading...</ThemedText>
-      ) : error ? (
-        <ThemedText>Error: {error}</ThemedText>
-      ) : (
-        <ThemedText>Data Loaded</ThemedText>
-      )}
-    </ParallaxScrollView>
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <ThemedView>
+        {loading ? (
+          <ThemedText>Loading...</ThemedText>
+        ) : error ? (
+          <ThemedText>Error: {error}</ThemedText>
+        ) : (
+          <SectionList
+            style={styles.sectionList}
+            sections={sections}
+            keyExtractor={(item: Ticker) => item.ticker}
+            renderItem={({ item }) => <ListItem data={item} />}
+            renderSectionHeader={({ section }) => (
+              <SectionHeaderComponent title={section.title} />
+            )}
+            stickySectionHeadersEnabled={false}
+            ItemSeparatorComponent={ItemSeparator}
+            SectionSeparatorComponent={SectionSeparator}
+          />
+        )}
+      </ThemedView>
+    </SafeAreaView>
   );
 }
-
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    gap: 8,
+  safeArea: {
+    flex: 1,
+  },
+  sectionList: {
+    paddingTop: 40,
+    paddingHorizontal: 24,
+    paddingBottom: 80,
   },
 });
