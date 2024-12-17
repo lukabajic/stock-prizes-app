@@ -14,10 +14,10 @@ type ListItemProps = {
 export const ListItem: React.FC<ListItemProps> = ({ data }) => {
   const backgroundColor = useThemeColor({}, "card");
   const primaryColor = useThemeColor({}, "primary");
-  const notificationColor = useThemeColor({}, "notification");
+  const errorColor = useThemeColor({}, "notification");
 
   const changeColor =
-    Number(data.change_amount) > 0 ? primaryColor : notificationColor;
+    Number(data.change_amount) > 0 ? primaryColor : errorColor;
 
   return (
     <Link
