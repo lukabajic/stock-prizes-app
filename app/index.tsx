@@ -4,7 +4,10 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 import { Error } from "@/components/Error";
 import { ThemedView } from "@/components/ThemedView";
@@ -22,6 +25,7 @@ import { Loader } from "@/components/Loader";
 import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function HomeScreen() {
+  const { top: topInset } = useSafeAreaInsets();
   const primary = useThemeColor({}, "primary");
 
   const [data, setData] = useState<MarketData | null>(null);
@@ -39,8 +43,9 @@ export default function HomeScreen() {
     try {
       const { data, error } = await fetchTopGainersLosers();
 
-      setError(error);
-      setData(data);
+      setError(ErrorMessages.RESPONSE_ERROR);
+      // setError(error);
+      // setData(data);
     } catch {
       setData(null);
       setError(ErrorMessages.UNKNOWN_ERROR);
@@ -77,59 +82,46 @@ export default function HomeScreen() {
     : [];
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ThemedView>
-        {loading ? (
-          <Loader style={styles.loader} />
-        ) : error ? (
-          <ScrollView contentContainerStyle={styles.errorScrollView}>
-            <Error onButtonPress={initialLoad} buttonText="Try again">
-              {error}
-            </Error>
-          </ScrollView>
-        ) : (
-          <SectionList
-            style={styles.sectionList}
-            sections={sections}
-            keyExtractor={(item: Ticker) => item.ticker}
-            renderItem={({ item }) => <ListItem data={item} />}
-            ItemSeparatorComponent={ItemSeparator}
-            SectionSeparatorComponent={SectionSeparator}
-            stickySectionHeadersEnabled={false}
-            renderSectionHeader={({ section }) => (
-              <SectionHeaderComponent title={section.title} />
-            )}
-            refreshControl={
-              <RefreshControl
-                tintColor={primary}
-                refreshing={refreshing}
-                onRefresh={onRefresh}
-              />
-            }
-          />
-        )}
-      </ThemedView>
-    </SafeAreaView>
+    <ThemedView>
+      {loading ? (
+        <Loader style={styles.loader} />
+      ) : error ? (
+        <Error onButtonPress={initialLoad} buttonText="Try again">
+          {error}
+        </Error>
+      ) : (
+        <SectionList
+          style={[styles.sectionList, { paddingTop: 40 + topInset }]}
+          sections={sections}
+          keyExtractor={(item: Ticker) => item.ticker}
+          renderItem={({ item }) => <ListItem data={item} />}
+          ItemSeparatorComponent={ItemSeparator}
+          SectionSeparatorComponent={SectionSeparator}
+          stickySectionHeadersEnabled={false}
+          renderSectionHeader={({ section }) => (
+            <SectionHeaderComponent title={section.title} />
+          )}
+          refreshControl={
+            <RefreshControl
+              tintColor={primary}
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }
+        />
+      )}
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
   loader: {
     width: "100%",
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
   },
-  errorScrollView: {
-    flexGrow: 1,
-    height: "100%",
-  },
   sectionList: {
-    paddingTop: 40,
     paddingHorizontal: 24,
-    paddingBottom: 80,
   },
 });
