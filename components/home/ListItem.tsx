@@ -5,24 +5,10 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 import { Ticker } from "@/types/marketData";
 import { ThemedText } from "../ThemedText";
 import { Link } from "expo-router";
+import { formatPercentage, formatVolume } from "@/types/formatters";
 
 type ListItemProps = {
   data: Ticker;
-};
-
-const formatPercentage = (value: string) => {
-  const numericValue = parseFloat(value);
-  if (isNaN(numericValue)) return value;
-  return `${numericValue.toFixed(2)}%`;
-};
-
-const formatVolume = (value: string) => {
-  const num = parseInt(value, 10);
-  if (isNaN(num)) return value;
-  if (num >= 1_000_000_000) return `${(num / 1_000_000_000).toFixed(1)}B`;
-  if (num >= 1_000_000) return `${(num / 1_000_000).toFixed(1)}M`;
-  if (num >= 1_000) return `${(num / 1_000).toFixed(1)}K`;
-  return num.toString();
 };
 
 export const ListItem: React.FC<ListItemProps> = ({ data }) => {
@@ -37,7 +23,14 @@ export const ListItem: React.FC<ListItemProps> = ({ data }) => {
     <Link
       href={{
         pathname: "/details/[ticker]",
-        params: { ticker: data.ticker },
+        // Passing all params here to avoid another request
+        // to alphavantage API, since I have limited requests
+        params: {
+          ticker: data.ticker,
+          price: data.price,
+          change_amount: data.change_amount,
+          change_percentage: data.change_percentage,
+        },
       }}
     >
       <View style={[styles.card, { backgroundColor }]}>
