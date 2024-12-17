@@ -2,21 +2,27 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 import {
   ActivityIndicator,
   ActivityIndicatorProps,
+  StyleSheet,
   View,
-  ViewProps,
 } from "react-native";
 
-type LoaderProps = ViewProps & Pick<ActivityIndicatorProps, "size">;
-
-export const Loader: React.FC<LoaderProps> = ({
+export const Loader: React.FC<Pick<ActivityIndicatorProps, "size">> = ({
   size = "large",
-  ...viewProps
 }) => {
   const primary = useThemeColor({}, "primary");
 
   return (
-    <View {...viewProps}>
+    <View style={styles.loader}>
       <ActivityIndicator color={primary} size={size} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  loader: {
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
