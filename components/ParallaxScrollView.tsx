@@ -12,7 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const ParallaxScrollView: React.FC<PropsWithChildren> = ({ children }) => (
   <SafeAreaView style={styles.safeArea}>
     <ThemedView style={styles.container}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollView}>
         <ThemedView style={styles.content}>{children}</ThemedView>
       </ScrollView>
     </ThemedView>
@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+  },
+  scrollView: {
+    flexGrow: 1,
   },
   content: {
     flex: 1,
