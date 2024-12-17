@@ -75,7 +75,7 @@ export default function HomeScreen() {
   return (
     <ThemedView>
       {loading ? (
-        <Loader style={styles.loader} />
+        <Loader />
       ) : error ? (
         <Error onButtonPress={initialLoad} buttonText="Try again">
           {error}
@@ -106,12 +106,6 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  loader: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
   sectionList: {
     paddingHorizontal: 24,
   },
