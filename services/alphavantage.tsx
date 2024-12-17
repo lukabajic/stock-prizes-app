@@ -1,4 +1,3 @@
-import { fetch } from "expo/fetch";
 import { MarketData } from "@/types/marketData";
 
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -15,7 +14,6 @@ export const fetchTopGainersLosers = async (): Promise<MarketData | null> => {
     }
 
     const json: MarketData = await response.json();
-    console.log(json);
 
     return json;
   } catch (error) {
