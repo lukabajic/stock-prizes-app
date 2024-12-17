@@ -31,6 +31,7 @@ export interface MetaData {
 export interface StockDetails {
   MetaData: MetaData;
   "Time Series (Daily)": Record<string, DailyData>;
+  Symbol: string;
   Name: string;
   Description: string;
   Sector: string;
