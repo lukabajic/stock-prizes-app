@@ -2,7 +2,6 @@ import { MarketData } from "@/types/marketData";
 import { ErrorMessages } from "@/utils/constants";
 
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
-const apiKey = process.env.EXPO_PUBLIC_API_KEY;
 
 interface FetchTopGainersLosersResponse {
   data: MarketData | null;
@@ -11,9 +10,7 @@ interface FetchTopGainersLosersResponse {
 
 export async function fetchTopGainersLosers(): Promise<FetchTopGainersLosersResponse> {
   try {
-    const response = await fetch(
-      `${apiUrl}/query?function=TOP_GAINERS_LOSERS&apikey=${apiKey}`,
-    );
+    const response = await fetch(`${apiUrl}/top-gainers-losers`);
 
     if (!response.ok) {
       return { data: null, error: ErrorMessages.RESPONSE_ERROR };
@@ -22,7 +19,8 @@ export async function fetchTopGainersLosers(): Promise<FetchTopGainersLosersResp
     const data: MarketData = await response.json();
 
     return { data, error: null };
-  } catch {
+  } catch (e) {
+    console.log(e);
     return { data: null, error: ErrorMessages.NETWORK_ERROR };
   }
 }
