@@ -1,13 +1,5 @@
-import {
-  RefreshControl,
-  SectionList,
-  StyleSheet,
-  ScrollView,
-} from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { RefreshControl, SectionList, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Error } from "@/components/Error";
 import { ThemedView } from "@/components/ThemedView";
@@ -49,7 +41,7 @@ export default function HomeScreen() {
       setData(null);
       setError(ErrorMessages.UNKNOWN_ERROR);
     }
-  }, [loading]);
+  }, []);
 
   const initialLoad = async () => {
     setLoading(true);
