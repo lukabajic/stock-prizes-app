@@ -20,7 +20,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = "light";
-  // const colorScheme = useColorScheme() ?? 'light';
+  // const colorScheme = useColorScheme() ?? "light";
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
@@ -46,7 +46,6 @@ export default function RootLayout() {
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="details" options={{ headerShown: false }} />
           <Stack.Screen name="index" />
-          <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
