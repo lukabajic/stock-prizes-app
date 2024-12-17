@@ -1,11 +1,10 @@
-import { SectionList, StyleSheet, Text, View } from "react-native";
+import { Dimensions, SectionList, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { fetchTopGainersLosers } from "@/services/alphavantage";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { MarketData, Ticker } from "@/types/marketData";
 import { ErrorMessages } from "@/utils/constants";
 import { ListItem } from "@/components/home/ListItem";
@@ -14,6 +13,7 @@ import {
   SectionHeaderComponent,
   SectionSeparator,
 } from "@/components/home/List";
+import { Loader } from "@/components/Loader";
 
 export default function HomeScreen() {
   const [data, setData] = useState<MarketData | null>(null);
@@ -37,7 +37,7 @@ export default function HomeScreen() {
       setData(null);
       setError(ErrorMessages.UNKNOWN_ERROR);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   }, [loading]);
 
@@ -62,7 +62,7 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.safeArea}>
       <ThemedView>
         {loading ? (
-          <ThemedText>Loading...</ThemedText>
+          <Loader style={styles.loader} />
         ) : error ? (
           <ThemedText>Error: {error}</ThemedText>
         ) : (
@@ -91,5 +91,11 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 24,
     paddingBottom: 80,
+  },
+  loader: {
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
