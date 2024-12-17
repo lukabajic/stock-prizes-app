@@ -5,17 +5,15 @@ import { ThemedView } from "@/components/ThemedView";
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function ParallaxScrollView({ children }: PropsWithChildren) {
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <ThemedView style={styles.container}>
-        <ScrollView scrollEventThrottle={16}>
-          <ThemedView style={styles.content}>{children}</ThemedView>
-        </ScrollView>
-      </ThemedView>
-    </SafeAreaView>
-  );
-}
+const ParallaxScrollView: React.FC<PropsWithChildren> = ({ children }) => (
+  <SafeAreaView style={styles.safeArea}>
+    <ThemedView style={styles.container}>
+      <ScrollView scrollEventThrottle={16}>
+        <ThemedView style={styles.content}>{children}</ThemedView>
+      </ScrollView>
+    </ThemedView>
+  </SafeAreaView>
+);
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -31,3 +29,5 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
 });
+
+export default ParallaxScrollView;
