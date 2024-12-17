@@ -15,10 +15,8 @@ export const Daily: React.FC<DailyProps> = ({ lastRefreshed, dailyData }) => {
   const borderColor = useThemeColor({}, "border");
   const textColor = useThemeColor({}, "text");
 
-  console.log(dailyData);
-
   return (
-    <View style={[styles.daily, { borderBottomColor: borderColor }]}>
+    <View style={[styles.daily, { borderTopColor: borderColor }]}>
       <View style={styles.iconAndSubtitle}>
         <IconSymbol
           style={styles.icon}
@@ -82,9 +80,9 @@ export const Daily: React.FC<DailyProps> = ({ lastRefreshed, dailyData }) => {
 
 const styles = StyleSheet.create({
   daily: {
-    paddingBottom: 24,
-    marginBottom: 24,
-    borderBottomWidth: 1,
+    paddingTop: 24,
+    marginTop: 24,
+    borderTopWidth: 1,
   },
   iconAndSubtitle: {
     flexDirection: "row",

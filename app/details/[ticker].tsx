@@ -1,14 +1,16 @@
 import { StyleSheet, View } from "react-native";
-import { Route, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { fetchStockDetails } from "@/services/alphavantage";
 import { useCallback, useEffect, useState } from "react";
-import { StockDetails } from "@/types/marketData";
+import { Keys, StockDetails } from "@/types/marketData";
 import { ErrorMessages } from "@/utils/constants";
 import { Loader } from "@/components/ui/Loader";
 import { Error } from "@/components/Error";
 import { Header } from "@/components/details/Header";
+import { Daily } from "@/components/details/Daily";
+import { Chart } from "@/components/details/Chart";
 
 type RouteParams = {
   ticker: string;
@@ -30,13 +32,8 @@ export default function TabTwoScreen() {
     try {
       const { data, error } = await fetchStockDetails(ticker);
 
-      if (data) {
-        setError(null);
-        setData(data);
-      } else {
-        setError(error);
-        setData(null);
-      }
+      setData(data);
+      setError(error);
     } catch {
       setData(null);
       setError(ErrorMessages.UNKNOWN_ERROR);
@@ -49,6 +46,8 @@ export default function TabTwoScreen() {
     fetchData();
   }, []);
 
+  const lastRefreshed = data?.[Keys.MetaData]?.[Keys.LastRefreshed];
+
   return (
     <ParallaxScrollView>
       {loading ? (
@@ -59,7 +58,16 @@ export default function TabTwoScreen() {
         </Error>
       ) : (
         <View style={styles.data}>
-          {data && <Header {...params} Symbol={data.Symbol} Name={data.Name} />}
+          {data && <Header {...params} ticker={ticker} Name={data.Name} />}
+
+          {lastRefreshed && (
+            <Daily
+              lastRefreshed={lastRefreshed}
+              dailyData={data[Keys.TimeSeries][lastRefreshed]}
+            />
+          )}
+
+          {data && <Chart />}
         </View>
       )}
     </ParallaxScrollView>
@@ -67,5 +75,8 @@ export default function TabTwoScreen() {
 }
 
 const styles = StyleSheet.create({
-  data: {},
+  data: {
+    paddingTop: 40,
+    paddingBottom: 80,
+  },
 });

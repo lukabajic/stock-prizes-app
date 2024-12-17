@@ -10,7 +10,8 @@ import { OpaqueColorValue, StyleProp, TextStyle } from "react-native";
 const MAPPING = {
   "exclamationmark.triangle.fill": "error",
   "tag.fill": "label",
-  'chart.bar.fill': 'bar-chart',
+  "chart.bar.fill": "bar-chart",
+  "chart.line.uptrend.xyaxis": "show-chart",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],

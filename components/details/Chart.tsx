@@ -2,27 +2,25 @@ import { StyleSheet, View } from "react-native";
 import { IconSymbol } from "@/components/ui/IconSymbol.ios";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ThemedText } from "../ThemedText";
-import { DailyData } from "@/types/marketData";
 
-interface DailyProps {
-  lastRefreshed: string;
-  dailyData: DailyData;
-}
+interface ChartProps {}
 
-export const Daily: React.FC<DailyProps> = ({ lastRefreshed, dailyData }) => {
+export const Chart: React.FC<ChartProps> = ({}) => {
   const borderColor = useThemeColor({}, "border");
   const textColor = useThemeColor({}, "text");
 
   return (
-    <View style={[styles.daily, { borderBottomColor: borderColor }]}>
+    <View style={[styles.daily, { borderTopColor: borderColor }]}>
       <View style={styles.iconAndSubtitle}>
         <IconSymbol
           style={styles.icon}
-          name="chart.bar.fill"
+          name="chart.line.uptrend.xyaxis"
           color={textColor}
           size={40}
         />
-        <ThemedText style={styles.subtitle}>Daily Performance</ThemedText>
+        <ThemedText style={styles.subtitle}>
+          Price Chart (Last 30 Days)
+        </ThemedText>
       </View>
     </View>
   );
@@ -30,9 +28,9 @@ export const Daily: React.FC<DailyProps> = ({ lastRefreshed, dailyData }) => {
 
 const styles = StyleSheet.create({
   daily: {
-    paddingBottom: 24,
-    marginBottom: 24,
-    borderBottomWidth: 1,
+    paddingTop: 24,
+    marginTop: 24,
+    borderTopWidth: 1,
   },
   iconAndSubtitle: {
     flexDirection: "row",

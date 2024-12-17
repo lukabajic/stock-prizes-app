@@ -5,8 +5,7 @@ import { Ticker } from "@/types/marketData";
 import { ThemedText } from "../ThemedText";
 import { formatPercentage } from "@/types/formatters";
 
-interface HeaderProps extends Omit<Ticker, "ticker" | "volume"> {
-  Symbol: string;
+interface HeaderProps extends Omit<Ticker, "volume"> {
   Name: string;
 }
 
@@ -14,7 +13,7 @@ export const Header: React.FC<HeaderProps> = ({
   price,
   change_amount,
   change_percentage,
-  Symbol,
+  ticker,
   Name,
 }) => {
   const primaryColor = useThemeColor({}, "primary");
@@ -26,7 +25,7 @@ export const Header: React.FC<HeaderProps> = ({
   const changeColor = Number(change_amount) > 0 ? primaryColor : errorColor;
 
   return (
-    <View style={[styles.header, { borderBottomColor: borderColor }]}>
+    <View style={{ borderBottomColor: borderColor }}>
       <View style={styles.iconAndSymbol}>
         <IconSymbol
           style={styles.icon}
@@ -34,7 +33,7 @@ export const Header: React.FC<HeaderProps> = ({
           color={textColor}
           size={40}
         />
-        <ThemedText style={styles.symbol}>{Symbol}</ThemedText>
+        <ThemedText style={styles.ticker}>{ticker}</ThemedText>
       </View>
       <ThemedText style={styles.name}>{Name}</ThemedText>
       <View style={styles.data}>
@@ -56,11 +55,6 @@ export const Header: React.FC<HeaderProps> = ({
 };
 
 const styles = StyleSheet.create({
-  header: {
-    paddingBottom: 24,
-    marginBottom: 24,
-    borderBottomWidth: 1,
-  },
   iconAndSymbol: {
     flexDirection: "row",
     alignItems: "center",
@@ -69,7 +63,7 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 8,
   },
-  symbol: {
+  ticker: {
     fontSize: 28,
     lineHeight: 32,
     fontWeight: 600,
