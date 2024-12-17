@@ -5,7 +5,7 @@ export const Colors = {
     card: "rgb(248, 249, 250)",
     text: "rgb(33, 37, 41)",
     border: "rgb(173, 181, 189)",
-    notification: "rgb(231, 111, 81)",
+    notification: "#e76f51",
   },
   dark: {
     primary: "rgb(42, 157, 143)",
@@ -13,6 +13,6 @@ export const Colors = {
     card: "rgb(52, 58, 64)",
     text: "rgb(248, 249, 250)",
     border: "rgb(173, 181, 189)",
-    notification: "rgb(231, 111, 81)",
+    notification: "#e76f51",
   },
 };

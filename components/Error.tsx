@@ -1,14 +1,9 @@
 import { PropsWithChildren } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableOpacityProps,
-} from "react-native";
+import { Text, View, StyleSheet, TouchableOpacityProps } from "react-native";
 
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { Button } from "@/components/Button";
+import { Button } from "@/components/ui/Button";
+import { IconSymbol } from "@/components/ui/IconSymbol";
 
 type ErrorPropsWithoutButton = PropsWithChildren & {
   onButtonPress?: never;
@@ -27,16 +22,25 @@ export const Error: React.FC<ErrorProps> = ({
   buttonText,
   children,
 }) => {
-  const notification = useThemeColor({}, "notification");
+  const errorColor = useThemeColor({}, "notification");
 
   const hasButton = onButtonPress && buttonText;
 
   return (
     <View style={styles.wrapper}>
+      <IconSymbol
+        style={styles.icon}
+        name="exclamationmark.triangle.fill"
+        size={120}
+        color={errorColor}
+      />
+
+      <Text style={[styles.title, { color: errorColor }]}>Whoops!</Text>
+
       <Text
         style={[
           styles.text,
-          { color: notification, marginBottom: hasButton ? 32 : 0 },
+          { color: errorColor, marginBottom: hasButton ? 32 : 0 },
         ]}
       >
         {children}
@@ -59,11 +63,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 24,
   },
+  title: {
+    fontSize: 24,
+    lineHeight: 28,
+    fontWeight: 600,
+    textAlign: "center",
+    marginBottom: 8,
+  },
   text: {
     fontSize: 18,
     lineHeight: 24,
     fontWeight: 600,
     textAlign: "center",
-    marginBottom: 8,
+  },
+  icon: {
+    marginBottom: 24,
   },
 });

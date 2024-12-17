@@ -43,9 +43,8 @@ export default function HomeScreen() {
     try {
       const { data, error } = await fetchTopGainersLosers();
 
-      setError(ErrorMessages.RESPONSE_ERROR);
-      // setError(error);
-      // setData(data);
+      setError(error);
+      setData(data);
     } catch {
       setData(null);
       setError(ErrorMessages.UNKNOWN_ERROR);
