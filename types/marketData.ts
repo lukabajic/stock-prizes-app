@@ -14,23 +14,34 @@ export interface MarketData {
   most_actively_traded: Ticker[];
 }
 
+// API endpoint returns an object with keys like this
+// https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo
+export enum Keys {
+  MetaData = "Meta Data",
+  LastRefreshed = "3. Last Refreshed",
+  TimeSeries = "Time Series (Daily)",
+  Open = "1. open",
+  High = "2. high",
+  Low = "3. low",
+  Close = "4. close",
+  Volume = "5. volume",
+}
+
 export interface DailyData {
-  open: string;
-  high: string;
-  low: string;
-  close: string;
-  volume: string;
+  [Keys.Open]: string;
+  [Keys.High]: string;
+  [Keys.Low]: string;
+  [Keys.Close]: string;
+  [Keys.Volume]: string;
 }
 
 export interface MetaData {
-  symbol: string;
-  lastRefreshed: string;
-  timeZone: string;
+  [Keys.LastRefreshed]: string;
 }
 
 export interface StockDetails {
-  MetaData: MetaData;
-  "Time Series (Daily)": Record<string, DailyData>;
+  [Keys.MetaData]: MetaData;
+  [Keys.TimeSeries]: Record<string, DailyData>;
   Symbol: string;
   Name: string;
   Description: string;
