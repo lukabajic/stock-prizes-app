@@ -3,7 +3,7 @@ import { MarketData } from "@/types/marketData";
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 const apiKey = process.env.EXPO_PUBLIC_API_KEY;
 
-export const fetchTopGainersLosers = async (): Promise<MarketData | null> => {
+export async function fetchTopGainersLosers(): Promise<MarketData | null> {
   try {
     const response = await fetch(
       `${apiUrl}/query?function=TOP_GAINERS_LOSERS&apikey=${apiKey}`,
@@ -20,4 +20,4 @@ export const fetchTopGainersLosers = async (): Promise<MarketData | null> => {
     console.error((error as Error).message);
     return null;
   }
-};
+}
