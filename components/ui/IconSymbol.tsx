@@ -9,6 +9,7 @@ import { OpaqueColorValue, StyleProp, TextStyle } from "react-native";
 
 const MAPPING = {
   "exclamationmark.triangle.fill": "error",
+  "tag.fill": "label",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],
