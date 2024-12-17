@@ -6,6 +6,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { fetchTopGainersLosers } from "@/services/alphavantage";
 import { useCallback, useEffect, useState } from "react";
 import { MarketData } from "@/types/marketData";
+import { ErrorMessages } from "@/utils/constants";
 
 export default function HomeScreen() {
   const [data, setData] = useState<MarketData | null>(null);
@@ -17,17 +18,17 @@ export default function HomeScreen() {
   }, []);
 
   const fetchData = useCallback(async (): Promise<void> => {
-    if (!loading) setLoading(true);
-    if (error) setError(null);
+    setLoading(true);
+    setError(null);
 
     try {
-      const data = await fetchTopGainersLosers();
-      if (data) setData(data);
-      else setError("API returned no data");
-    } catch (error) {
-      setError(
-        error instanceof Error ? error.message : "An unknown error occurred",
-      );
+      const { data, error } = await fetchTopGainersLosers();
+
+      setError(error);
+      setData(data);
+    } catch {
+      setData(null);
+      setError(ErrorMessages.UNKNOWN_ERROR);
     } finally {
       setLoading(false);
     }

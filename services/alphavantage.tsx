@@ -1,23 +1,28 @@
 import { MarketData } from "@/types/marketData";
+import { ErrorMessages } from "@/utils/constants";
 
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 const apiKey = process.env.EXPO_PUBLIC_API_KEY;
 
-export async function fetchTopGainersLosers(): Promise<MarketData | null> {
+interface FetchTopGainersLosersResponse {
+  data: MarketData | null;
+  error: ErrorMessages | null;
+}
+
+export async function fetchTopGainersLosers(): Promise<FetchTopGainersLosersResponse> {
   try {
     const response = await fetch(
       `${apiUrl}/query?function=TOP_GAINERS_LOSERS&apikey=${apiKey}`,
     );
 
     if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
+      return { data: null, error: ErrorMessages.RESPONSE_ERROR };
     }
 
-    const json: MarketData = await response.json();
+    const data: MarketData = await response.json();
 
-    return json;
-  } catch (error) {
-    console.error((error as Error).message);
-    return null;
+    return { data, error: null };
+  } catch {
+    return { data: null, error: ErrorMessages.NETWORK_ERROR };
   }
 }
