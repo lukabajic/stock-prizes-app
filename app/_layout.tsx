@@ -44,7 +44,7 @@ export default function RootLayout() {
         }}
       >
         <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="details" options={{ headerShown: false }} />
+          <Stack.Screen name="details/[ticker]" />
           <Stack.Screen name="index" />
         </Stack>
         <StatusBar style="auto" />

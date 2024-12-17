@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { Ticker } from "@/types/marketData";
 import { ThemedText } from "../ThemedText";
+import { Link } from "expo-router";
 
 type ListItemProps = {
   data: Ticker;
@@ -33,26 +34,34 @@ export const ListItem: React.FC<ListItemProps> = ({ data }) => {
     Number(data.change_amount) > 0 ? primaryColor : notificationColor;
 
   return (
-    <View style={[styles.card, { backgroundColor }]}>
-      <View style={styles.cardRow}>
-        <ThemedText style={styles.ticker}>{data.ticker}</ThemedText>
-        <ThemedText style={styles.price}>{data.price}</ThemedText>
+    <Link
+      href={{
+        pathname: "/details/[ticker]",
+        params: { ticker: data.ticker },
+      }}
+    >
+      <View style={[styles.card, { backgroundColor }]}>
+        <View style={styles.cardRow}>
+          <ThemedText style={styles.ticker}>{data.ticker}</ThemedText>
+          <ThemedText style={styles.price}>{data.price}</ThemedText>
+        </View>
+        <View style={styles.cardRow}>
+          <Text style={[styles.change, { color: changeColor }]}>
+            {data.change_amount} ({formatPercentage(data.change_percentage)})
+          </Text>
+          <ThemedText style={styles.volume}>
+            <Text style={styles.volumeText}>Volume:</Text>{" "}
+            <Text>{formatVolume(data.volume)}</Text>
+          </ThemedText>
+        </View>
       </View>
-      <View style={styles.cardRow}>
-        <Text style={[styles.change, { color: changeColor }]}>
-          {data.change_amount} ({formatPercentage(data.change_percentage)})
-        </Text>
-        <ThemedText style={styles.volume}>
-          <Text style={styles.volumeText}>Volume:</Text>{" "}
-          <Text>{formatVolume(data.volume)}</Text>
-        </ThemedText>
-      </View>
-    </View>
+    </Link>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
+    width: "100%",
     padding: 16,
     borderRadius: 16,
     gap: 32,
