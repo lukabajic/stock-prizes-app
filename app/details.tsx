@@ -6,8 +6,7 @@ import { ThemedView } from '@/components/ThemedView';
 
 export default function TabTwoScreen() {
   return (
-    <ParallaxScrollView
-      >
+    <ParallaxScrollView>
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Details</ThemedText>
       </ThemedView>
