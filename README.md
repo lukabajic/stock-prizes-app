@@ -52,7 +52,8 @@ The Alpha Vantage API has a 25 requests limit on the free plan.
 
 ## Backend Implementation
 
-The backend server, implemented using Express and Redis, provides:
+The backend server, implemented using Express and Redis.
+
 GitHub: [Express Server](https://github.com/lukabajic/simple-express-server/blob/main/server.js)  
 URL: [Live Server](https://simple-express-redis-app-56cdbd82e511.herokuapp.com)
 
