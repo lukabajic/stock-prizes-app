@@ -108,6 +108,8 @@ export default function HomeScreen() {
 
           <SectionList
             style={[styles.sectionList, { paddingTop: 40 + topInset }]}
+            contentInset={{ top: topInset }}
+            contentOffset={{ y: -topInset, x: 0 }}
             sections={sections}
             keyExtractor={(item: Ticker) => item.ticker}
             renderItem={({ item }) => <ListItem data={item} />}

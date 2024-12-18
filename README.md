@@ -146,7 +146,8 @@ This is a task list I created for myself while analyzing the requirements and te
 - [x] details - chart section
 - [x] README.md
 - [x] fix activity indicator positioning
-
+- [ ] add a back button on details screen
+ 
 ### Low Priority
 
 - [x] improve home design, add more content
