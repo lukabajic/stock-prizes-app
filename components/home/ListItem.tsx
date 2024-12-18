@@ -58,14 +58,20 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 16,
     gap: 32,
+
+    /**
+     * https://ethercreative.github.io/react-native-shadow-generator/
+     * Nice tool that I use whenever I need box elevation on RN
+     */
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 2,
     },
-    shadowOpacity: 0.18,
-    shadowRadius: 1.0,
-    elevation: 1,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   cardRow: {
     flexDirection: 'row',

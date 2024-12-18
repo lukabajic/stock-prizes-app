@@ -1,50 +1,100 @@
-# Welcome to your Expo app 👋
+# Stock Price Tracker App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Project Overview
 
-## Get started
+The Stock Price Tracker is a React Native application designed to fetch and display real-time stock prices. It provides key metrics, meaningful changes, and detailed stock information in an intuitive interface. The app uses the Alpha Vantage API for stock data, with a custom backend hosted on Heroku to handle caching for better performance.
 
-1. Install dependencies
+## Features
 
+- **Home Screen**: Displays top gainers, top losers, and the most actively traded stocks with a refresh functionality.
+- **Details Screen**: Shows comprehensive details about a specific stock, including daily performance, historical price trends, and company information.
+
+## Directory Structure
+
+```
+├── app
+│   ├── details
+│   │   └── [ticker].tsx
+│   ├── index.tsx
+│   └── _layout.tsx
+├── assets
+│   ├── fonts
+│   ├── images
+├── components
+│   ├── details
+│   ├── home
+│   ├── ui
+│   └── Themed components
+├── constants
+├── hooks
+├── services
+├── types
+├── utils
+├── backend (backend server)
+```
+
+## Backend Implementation
+
+The backend server, implemented using Express and Redis, provides:
+GitHub: https://github.com/lukabajic/simple-express-server/blob/main/server.js
+URL: https://simple-express-redis-app-56cdbd82e511.herokuapp.com
+
+### Routes
+
+1. **`GET /company/:symbol`**
+
+   - Fetches daily performance and company overview data for a given stock symbol and caches the response for 24 hours.
+
+2. **`GET /top-gainers-losers`**
+   - Fetches and caches data about top gainers, losers, and actively traded stocks for 24 hours.
+
+### Error Handling
+
+- Handles API errors gracefully by responding with a 500 status and a generic error message.
+- Implements try-catch blocks to ensure robust error handling.
+
+## How to Run the Project
+
+### Prerequisites
+
+- Install [Node.js](https://nodejs.org/) and [Expo CLI](https://expo.dev/).
+
+### Steps to Run Locally
+
+1. Clone the repository.
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-2. Start the app
-
+3. Start the backend server:
    ```bash
-    npx expo start
+      cp .env.example .env
    ```
+   Then replace the placeholder URL with the backend URL provided above
+4. Start the Expo development server:
+   ```bash
+   expo start
+   ```
+5. Run the app on a device or simulator:
+   - Use the Expo Go app on your iPhone or Android device.
+   - Or, run it on an iOS/Android simulator via Expo CLI.
 
-In the output, you'll find options to open the app in a
+## Testing
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+The app has been tested only on an **iPhone 12** using the Expo Go app. Further testing is recommended for other devices and simulators.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Development Notes
 
-## Get a fresh project
+- **Tools Used**: Developed using [Visual Studio Code](https://code.visualstudio.com/).
+- **Backend Hosting**: Backend is hosted on Heroku with Redis for caching.
+- **Expo**: Allows seamless development and testing on mobile devices.
 
-When you're ready, run:
+## Acknowledgments
 
-```bash
-npm run reset-project
-```
+- **ChatGPT**: Used extensively to:
+  - Analyze Alpha Vantage API data.
+  - Design the home and details screens.
+  - Accelerate coding tasks and debugging.
+  - Draft this README.md file.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Feel free to explore application!
