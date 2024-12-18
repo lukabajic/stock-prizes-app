@@ -103,11 +103,11 @@ export default function HomeScreen() {
     );
   }
 
-  if (error)
+  if (error || !data)
     return (
       <ThemedView style={styles.container}>
-        <Error onButtonPress={initialLoad} buttonText="Try again">
-          {error}
+        <Error onButtonPress={fetchData} buttonText="Try again">
+          {error || ErrorMessages.UNKNOWN_ERROR}
         </Error>
       </ThemedView>
     );
