@@ -56,4 +56,9 @@ export interface StockDetails {
   DividendYield: string;
   '52WeekHigh': string;
   '52WeekLow': string;
+  AnalystRatingStrongBuy: string;
+  AnalystRatingBuy: string;
+  AnalystRatingHold: string;
+  AnalystRatingSell: string;
+  AnalystRatingStrongSell: string;
 }

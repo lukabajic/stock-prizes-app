@@ -12,6 +12,7 @@ import { Error } from '@/components/Error';
 import { Header } from '@/components/details/Header';
 import { Daily } from '@/components/details/Daily';
 import { KeyMetrics } from '@/components/details/KeyMetrics';
+import { Ratings } from '@/components/details/Ratings';
 import { Overview } from '@/components/details/Overview';
 import { Chart } from '@/components/details/Chart';
 
@@ -91,6 +92,16 @@ export default function TabTwoScreen() {
               dividendYield={data.DividendYield}
               fiftyTwoWeekHigh={data['52WeekHigh']}
               fiftyTwoWeekLow={data['52WeekLow']}
+            />
+          )}
+
+          {data && (
+            <Ratings
+              strongBuy={data.AnalystRatingStrongBuy}
+              buy={data.AnalystRatingBuy}
+              hold={data.AnalystRatingHold}
+              sell={data.AnalystRatingSell}
+              strongSell={data.AnalystRatingStrongSell}
             />
           )}
         </View>
