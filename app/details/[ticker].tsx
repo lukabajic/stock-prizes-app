@@ -13,7 +13,6 @@ import { Header } from '@/components/details/Header';
 import { Daily } from '@/components/details/Daily';
 import { Overview } from '@/components/details/Overview';
 import { Chart } from '@/components/details/Chart';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 type RouteParams = {
@@ -63,32 +62,29 @@ export default function TabTwoScreen() {
           {error}
         </Error>
       ) : (
-        <>
-          <IconSymbol name="chevron.backward" size={24} color={textColor} />
-          <View style={styles.data}>
-            {data && <Header {...params} ticker={ticker} Name={data.Name} />}
+        <View style={styles.data}>
+          {data && <Header {...params} ticker={ticker} Name={data.Name} />}
 
-            {lastRefreshed && (
-              <Daily
-                lastRefreshed={lastRefreshed}
-                dailyData={data[Keys.TimeSeries][lastRefreshed]}
-              />
-            )}
+          {lastRefreshed && (
+            <Daily
+              lastRefreshed={lastRefreshed}
+              dailyData={data[Keys.TimeSeries][lastRefreshed]}
+            />
+          )}
 
-            {data?.[Keys.TimeSeries] && (
-              <Chart chartData={data[Keys.TimeSeries]} />
-            )}
+          {data?.[Keys.TimeSeries] && (
+            <Chart chartData={data[Keys.TimeSeries]} />
+          )}
 
-            {data && (
-              <Overview
-                sector={data.Sector}
-                industry={data.Industry}
-                description={data.Description}
-                website={data.OfficialSite}
-              />
-            )}
-          </View>
-        </>
+          {data && (
+            <Overview
+              sector={data.Sector}
+              industry={data.Industry}
+              description={data.Description}
+              website={data.OfficialSite}
+            />
+          )}
+        </View>
       )}
     </ParallaxScrollView>
   );
@@ -96,7 +92,7 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   data: {
-    paddingTop: 40,
+    // paddingTop: 40,
     paddingBottom: 80,
   },
 });

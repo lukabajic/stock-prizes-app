@@ -42,9 +42,17 @@ export default function RootLayout() {
           colors: { ...NavigationTheme.colors, ...Colors[colorScheme] },
         }}
       >
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="details/[ticker]" />
-          <Stack.Screen name="index" />
+        <Stack>
+          <Stack.Screen
+            name="details/[ticker]"
+            options={{ headerBackTitle: 'Back', headerTitle: '' }}
+          />
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: false,
+            }}
+          />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
