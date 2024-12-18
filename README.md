@@ -47,12 +47,12 @@ The Alpha Vantage API has a 25 requests limit on the free plan.
 ├── services
 ├── types
 ├── utils
-├── backend (backend server)
 ```
 
 ## Backend Implementation
 
-The backend server, implemented using Express and Redis, provides:
+The backend server, implemented using Express and Redis.
+
 GitHub: [Express Server](https://github.com/lukabajic/simple-express-server/blob/main/server.js)  
 URL: [Live Server](https://simple-express-redis-app-56cdbd82e511.herokuapp.com)
 
@@ -79,15 +79,17 @@ URL: [Live Server](https://simple-express-redis-app-56cdbd82e511.herokuapp.com)
 ### Steps to Run Locally
 
 1. Clone the repository.
+
 2. Install dependencies:
    ```bash
    npm install
    ```
-3. Start the backend server:
+3. Create the .env file
    ```bash
-      cp .env.example .env
+   cp .env.example .env
    ```
-   Then replace the placeholder URL with the backend URL provided above
+   Then replace the placeholder URL with the backend URL provided above.
+
 4. Start the Expo development server:
    ```bash
    expo start
@@ -168,14 +170,9 @@ This is a task list I created for myself while analyzing the requirements and te
 
 ## MVP and further improvements
 
-This is the last commit on the main/development branches:
-commit fbb817e169d712c68aec71cf433532cde4f391c9
-Author: lukabajic <lukabajic.dev@gmail.com>
-Date:   Wed Dec 18 13:08:52 2024 +0100
-
 Spent around **12 hours** to complete this. 
 
 What's here should be enough for the task assignment :)
-I opened a PR for the remaining changes and some improvements.
+I opened a [PR](https://github.com/lukabajic/stock-prizes-app/pull/1) for the remaining changes and some improvements.
 
 Feel free to explore the application!
