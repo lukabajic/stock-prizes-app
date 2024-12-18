@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { StyleSheet, TextStyle, View } from 'react-native';
+import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol, IconSymbolName } from '@/components/ui/IconSymbol';
 import { useThemeColor } from '@/hooks/useThemeColor';
@@ -8,6 +8,7 @@ interface SectionProps extends PropsWithChildren {
   icon: IconSymbolName;
   title: string;
   titleStyles?: TextStyle;
+  sectionStyles?: ViewStyle;
 }
 
 export const Section: React.FC<SectionProps> = ({
@@ -15,11 +16,12 @@ export const Section: React.FC<SectionProps> = ({
   icon,
   title,
   titleStyles = {},
+  sectionStyles = {},
 }) => {
   const textColor = useThemeColor({}, 'text');
 
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper, sectionStyles]}>
       <View style={styles.iconAndTitle}>
         <IconSymbol
           style={styles.icon}
