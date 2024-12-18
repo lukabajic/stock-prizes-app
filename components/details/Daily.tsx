@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   iconAndSubtitle: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 24,
   },
   icon: {
     marginRight: 8,
