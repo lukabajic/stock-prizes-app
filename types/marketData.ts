@@ -61,4 +61,5 @@ export interface StockDetails {
   AnalystRatingHold: string;
   AnalystRatingSell: string;
   AnalystRatingStrongSell: string;
+  AnalystTargetPrice: string;
 }

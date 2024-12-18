@@ -15,6 +15,7 @@ import { KeyMetrics } from '@/components/details/KeyMetrics';
 import { Ratings } from '@/components/details/Ratings';
 import { Overview } from '@/components/details/Overview';
 import { Chart } from '@/components/details/Chart';
+import { Target } from '@/components/details/Target';
 
 type RouteParams = {
   ticker: string;
@@ -104,6 +105,8 @@ export default function TabTwoScreen() {
               strongSell={data.AnalystRatingStrongSell}
             />
           )}
+
+          {data && <Target targetPrice={data.AnalystRatingBuy} />}
         </View>
       )}
     </ParallaxScrollView>
@@ -112,7 +115,6 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   data: {
-    // paddingTop: 40,
     paddingBottom: 80,
   },
 });
