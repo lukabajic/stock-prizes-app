@@ -16,6 +16,7 @@ const MAPPING = {
   'chevron.backward': 'arrow-back',
   'star.fill': 'star',
   'circle.inset.filled': 'gps-fixed',
+  'newspaper.fill': 'article',
 } as Partial<
   Record<
     import('expo-symbols').SymbolViewProps['name'],

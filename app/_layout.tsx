@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import {
   DarkTheme,
@@ -48,7 +47,7 @@ export default function TabLayout() {
             tabBarActiveTintColor: Colors[colorScheme ?? 'light'].primary,
             headerShown: false,
             tabBarButton: HapticTab,
-            tabBarBackground: TabBarBackground,
+            tabBarBackground: () => Colors[colorScheme ?? 'light'].background,
             tabBarStyle: Platform.select({
               ios: {
                 position: 'absolute',
