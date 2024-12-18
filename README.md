@@ -84,9 +84,9 @@ URL: [Live Server](https://simple-express-redis-app-56cdbd82e511.herokuapp.com)
    ```bash
    npm install
    ```
-3. Start the backend server:
+3. Create the .env file
    ```bash
-      cp .env.example .env
+   cp .env.example .env
    ```
    Then replace the placeholder URL with the backend URL provided above
 4. Start the Expo development server:
