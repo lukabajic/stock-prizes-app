@@ -1,3 +1,5 @@
+import { ExternalPathString } from 'expo-router';
+
 interface Topic {
   topic: string;
   relevance_score: number;
@@ -10,9 +12,9 @@ interface TickerSentiment {
   ticker_sentiment_label: string;
 }
 
-interface Article {
+export interface Article {
   title: string;
-  url: string;
+  url: ExternalPathString;
   time_published: string;
   authors: string[];
   summary: string;

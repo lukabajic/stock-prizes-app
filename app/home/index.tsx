@@ -97,12 +97,6 @@ export default function HomeScreen() {
    * data doesn't change frequently
    */
   const sections = useMemo(() => prepareSections(data), [data]);
-  console.log(
-    'bottomInset:',
-    bottomInset,
-    'bottomTabBarHeight:',
-    bottomTabBarHeight
-  );
 
   if (loading) {
     return (
