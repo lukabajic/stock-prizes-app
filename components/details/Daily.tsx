@@ -1,4 +1,4 @@
-import { TR, TD, Table } from '@/components/ui/Table';
+import { Table } from '@/components/ui/Table';
 import { DailyData, Keys } from '@/types/marketData';
 import { formatVolume } from '@/utils/formatters';
 import { Section } from './Section';
@@ -8,54 +8,30 @@ interface DailyProps {
   dailyData: DailyData;
 }
 
-export const Daily: React.FC<DailyProps> = ({ lastRefreshed, dailyData }) => (
-  <Section title="Daily Performance" icon="chart.bar.fill">
-    <Table>
-      <TR borderBottom>
-        <TD borderRight bold background>
-          Metric
-        </TD>
-        <TD borderRight bold background>
-          Value
-        </TD>
-      </TR>
+const columns = [
+  {
+    key: 'metric',
+    label: 'Metric',
+    bold: true,
+    background: true,
+    borderRight: true,
+  },
+  { key: 'value', label: 'Value', bold: true, background: true },
+];
 
-      <TR borderBottom>
-        <TD borderRight bold>
-          Open
-        </TD>
-        <TD>{dailyData[Keys.Open]}</TD>
-      </TR>
-      <TR borderBottom>
-        <TD borderRight bold>
-          High
-        </TD>
-        <TD>{dailyData[Keys.High]}</TD>
-      </TR>
-      <TR borderBottom>
-        <TD borderRight bold>
-          Low
-        </TD>
-        <TD>{dailyData[Keys.Low]}</TD>
-      </TR>
-      <TR borderBottom>
-        <TD borderRight bold>
-          Close
-        </TD>
-        <TD>{dailyData[Keys.Close]}</TD>
-      </TR>
-      <TR borderBottom>
-        <TD borderRight bold>
-          Volume
-        </TD>
-        <TD>{formatVolume(dailyData[Keys.Volume])}</TD>
-      </TR>
-      <TR borderBottom>
-        <TD borderRight bold>
-          Last Updated
-        </TD>
-        <TD>{lastRefreshed}</TD>
-      </TR>
-    </Table>
-  </Section>
-);
+export const Daily: React.FC<DailyProps> = ({ lastRefreshed, dailyData }) => {
+  const data = [
+    { metric: 'Open', value: dailyData[Keys.Open] },
+    { metric: 'High', value: dailyData[Keys.High] },
+    { metric: 'Low', value: dailyData[Keys.Low] },
+    { metric: 'Close', value: dailyData[Keys.Close] },
+    { metric: 'Volume', value: formatVolume(dailyData[Keys.Volume]) },
+    { metric: 'Last Updated', value: lastRefreshed },
+  ];
+
+  return (
+    <Section title="Daily Performance" icon="chart.bar.fill">
+      <Table columns={columns} data={data} />
+    </Section>
+  );
+};

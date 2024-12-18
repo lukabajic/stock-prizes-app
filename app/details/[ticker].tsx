@@ -11,9 +11,9 @@ import { Loader } from '@/components/ui/Loader';
 import { Error } from '@/components/Error';
 import { Header } from '@/components/details/Header';
 import { Daily } from '@/components/details/Daily';
+import { KeyMetrics } from '@/components/details/KeyMetrics';
 import { Overview } from '@/components/details/Overview';
 import { Chart } from '@/components/details/Chart';
-import { useThemeColor } from '@/hooks/useThemeColor';
 
 type RouteParams = {
   ticker: string;
@@ -24,8 +24,6 @@ type RouteParams = {
 
 export default function TabTwoScreen() {
   const { ticker, ...params } = useLocalSearchParams<RouteParams>();
-
-  const textColor = useThemeColor('text');
 
   const [data, setData] = useState<StockDetails | null>(null);
   const [loading, setLoading] = useState(false);
@@ -82,6 +80,17 @@ export default function TabTwoScreen() {
               industry={data.Industry}
               description={data.Description}
               website={data.OfficialSite}
+            />
+          )}
+
+          {data && (
+            <KeyMetrics
+              marketCap={data.MarketCapitalization}
+              pERatio={data.PeRatio}
+              eps={data.Eps}
+              dividendYield={data.DividendYield}
+              fiftyTwoWeekHigh={data['52WeekHigh']}
+              fiftyTwoWeekLow={data['52WeekLow']}
             />
           )}
         </View>
