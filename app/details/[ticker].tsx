@@ -72,7 +72,14 @@ export default function TabTwoScreen() {
             <Chart chartData={data[Keys.TimeSeries]} />
           )}
 
-          <Overview />
+          {data && (
+            <Overview
+              sector={data.Sector}
+              industry={data.Industry}
+              description={data.Description}
+              website={data.OfficialSite}
+            />
+          )}
         </View>
       )}
     </ParallaxScrollView>
