@@ -67,7 +67,9 @@ export default function TabTwoScreen() {
             />
           )}
 
-          {data && <Chart />}
+          {data?.[Keys.TimeSeries] && (
+            <Chart chartData={data[Keys.TimeSeries]} />
+          )}
         </View>
       )}
     </ParallaxScrollView>
