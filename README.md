@@ -116,4 +116,53 @@ URL: [Live Server](https://simple-express-redis-app-56cdbd82e511.herokuapp.com)
   - Accelerating debugging and feature implementation.
   - Drafting this README.md file.
 
+## Tasks
+
+This is a task list I created for myself while analyzing the requirements and testing API endpoints.
+
+### High Priority
+
+- [x] details - company section
+- [x] details - daily performance
+- [x] details - header section
+- [x] 2 api route for details screen
+- [x] create simple express server with cache
+- [x] add eslint and prettier config
+- [x] home page - plan design, plan work
+- [x] home page boilerplate, use endpoint
+- [x] home page reusable list item component
+- [x] home screen reusable list component
+- [x] reusable button component
+- [x] alphavantage API_KEY top gainers endpoint and types for api
+- [x] plan details screen - plan
+
+### Medium Priority
+
+- [x] create and use error component
+- [x] create and add a loader
+- [x] pull refresh option
+- [x] app splash screen
+- [x] app icons
+- [x] details - chart section
+- [x] README.md
+- [x] fix activity indicator positioning
+
+### Low Priority
+
+- [x] improve home design, add more content
+- [ ] error logger
+- [ ] details page - key metrics
+- [ ] details page - analyst ratings
+- [ ] details page - target section
+- [ ] use better fonts
+- [ ] import formatter
+- [ ] check expo-haptics
+- [ ] check expo-blur
+- [ ] check expo-system-ui
+
+### Optional
+
+- [ ] translations
+- [ ] news tab
+
 Feel free to explore the application!
