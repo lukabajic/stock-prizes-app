@@ -1,3 +1,5 @@
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
 import { Error } from '@/components/Error';
 import { ThemedView } from '@/components/ThemedView';
 import {
@@ -9,12 +11,11 @@ import {
 import { ListItem } from '@/components/home/ListItem';
 import { Loader } from '@/components/ui/Loader';
 import { SvgBackground } from '@/components/ui/SvgBackground';
+import { useBottomTabOverflow } from '@/components/ui/TabBarBackground';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { fetchTopGainersLosers } from '@/services/stocks';
 import { MarketData, Ticker } from '@/types/marketData';
 import { ErrorMessages } from '@/utils/constants';
-
-import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Dimensions,
   RefreshControl,
@@ -43,7 +44,8 @@ const prepareSections = (data: MarketData | null) =>
     : [];
 
 export default function HomeScreen() {
-  const { top: topInset } = useSafeAreaInsets();
+  const { top: topInset, bottom: bottomInset } = useSafeAreaInsets();
+  const bottomTabOverflow = useBottomTabOverflow();
 
   const primary = useThemeColor('primary');
 
@@ -108,7 +110,13 @@ export default function HomeScreen() {
           <SvgBackground style={styles.svgBackground} />
 
           <SectionList
-            style={[styles.sectionList, { paddingTop: 40 + topInset }]}
+            style={[
+              styles.sectionList,
+              {
+                paddingTop: 40 + topInset,
+                paddingBottom: bottomInset + bottomTabOverflow,
+              },
+            ]}
             contentInset={{ top: topInset }}
             contentOffset={{ y: -topInset, x: 0 }}
             sections={sections}

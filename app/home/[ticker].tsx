@@ -1,3 +1,5 @@
+import React, { useCallback, useEffect, useState } from 'react';
+
 import { Error } from '@/components/Error';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { Chart } from '@/components/details/Chart';
@@ -11,11 +13,8 @@ import { Loader } from '@/components/ui/Loader';
 import { fetchStockDetails } from '@/services/stocks';
 import { Keys, StockDetails } from '@/types/marketData';
 import { ErrorMessages } from '@/utils/constants';
-
-import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-
 import { useLocalSearchParams } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
 
 type RouteParams = {
   ticker: string;
@@ -24,7 +23,7 @@ type RouteParams = {
   change_percentage: string;
 };
 
-export default function TabTwoScreen() {
+export default function TickerScreen() {
   const { ticker, ...params } = useLocalSearchParams<RouteParams>();
 
   const [data, setData] = useState<StockDetails | null>(null);
