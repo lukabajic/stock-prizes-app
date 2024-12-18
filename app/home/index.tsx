@@ -16,6 +16,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 import { fetchTopGainersLosers } from '@/services/stocks';
 import { MarketData, Ticker } from '@/types/marketData';
 import { ErrorMessages } from '@/utils/constants';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import {
   Dimensions,
   RefreshControl,
@@ -45,7 +46,7 @@ const prepareSections = (data: MarketData | null) =>
 
 export default function HomeScreen() {
   const { top: topInset, bottom: bottomInset } = useSafeAreaInsets();
-  const bottomTabOverflow = useBottomTabOverflow();
+  const bottomTabBarHeight = useBottomTabBarHeight();
 
   const primary = useThemeColor('primary');
 
@@ -96,6 +97,12 @@ export default function HomeScreen() {
    * data doesn't change frequently
    */
   const sections = useMemo(() => prepareSections(data), [data]);
+  console.log(
+    'bottomInset:',
+    bottomInset,
+    'bottomTabBarHeight:',
+    bottomTabBarHeight
+  );
 
   return (
     <ThemedView style={styles.container}>
@@ -110,13 +117,11 @@ export default function HomeScreen() {
           <SvgBackground style={styles.svgBackground} />
 
           <SectionList
-            style={[
-              styles.sectionList,
-              {
-                paddingTop: 40 + topInset,
-                paddingBottom: bottomInset + bottomTabOverflow,
-              },
-            ]}
+            style={[styles.sectionList]}
+            contentContainerStyle={{
+              paddingTop: 40 + topInset,
+              paddingBottom: bottomInset + bottomTabBarHeight,
+            }}
             contentInset={{ top: topInset }}
             contentOffset={{ y: -topInset, x: 0 }}
             sections={sections}
