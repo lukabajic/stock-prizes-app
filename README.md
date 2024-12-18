@@ -176,6 +176,6 @@ Date:   Wed Dec 18 13:08:52 2024 +0100
 Spent around **12 hours** to complete this. 
 
 What's here should be enough for the task assignment :)
-I opened a PR for the remaining changes and some improvements.
+I opened a [PR](https://github.com/lukabajic/stock-prizes-app/pull/1) for the remaining changes and some improvements.
 
 Feel free to explore the application!
