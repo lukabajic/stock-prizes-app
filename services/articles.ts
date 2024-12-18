@@ -4,7 +4,7 @@ import { ErrorMessages } from '@/utils/constants';
 
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 
-export async function fetchTopGainersLosers(): Promise<
+export async function fetchArticlesFeed(): Promise<
   FetchResponse<FeedResponse>
 > {
   try {

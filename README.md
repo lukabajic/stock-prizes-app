@@ -162,14 +162,14 @@ This is a task list I created for myself while analyzing the requirements and te
 - [x] use better fonts
 - [x] import formatter
 - [x] add a pre commit file
-- [ ] check expo-haptics
-- [ ] check expo-blur
-- [ ] check expo-system-ui
+- [x] checkout expo-haptics
+- [x] checkout expo-blur
+- [x] checkout expo-system-ui
 
 ### Optional
 
 - [ ] translations
-- [ ] news tab
+- [x] news tab
 
 ## MVP and further improvements
 
@@ -177,5 +177,7 @@ Spent around **12 hours** to complete this.
 
 What's here should be enough for the task assignment :)
 I opened a [PR](https://github.com/lukabajic/stock-prizes-app/pull/1) for the remaining changes and some improvements.
+Please try out `npx expo start` on that branch as well. I played around with some new expo features that I didn't try out before, `expo-routing` in paticular.
+And added some more content to the app.
 
 Feel free to explore the application!
