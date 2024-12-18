@@ -1,5 +1,3 @@
-import React, { useCallback, useEffect, useState } from 'react';
-
 import { Error } from '@/components/Error';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { Chart } from '@/components/details/Chart';
@@ -10,11 +8,14 @@ import { Overview } from '@/components/details/Overview';
 import { Ratings } from '@/components/details/Ratings';
 import { Target } from '@/components/details/Target';
 import { Loader } from '@/components/ui/Loader';
-import { fetchStockDetails } from '@/services/alphavantage';
+import { fetchStockDetails } from '@/services/stocks';
 import { Keys, StockDetails } from '@/types/marketData';
 import { ErrorMessages } from '@/utils/constants';
-import { useLocalSearchParams } from 'expo-router';
+
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+
+import { useLocalSearchParams } from 'expo-router';
 
 type RouteParams = {
   ticker: string;
