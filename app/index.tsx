@@ -1,5 +1,3 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-
 import { Error } from '@/components/Error';
 import { ThemedView } from '@/components/ThemedView';
 import {
@@ -15,6 +13,8 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 import { fetchTopGainersLosers } from '@/services/alphavantage';
 import { MarketData, Ticker } from '@/types/marketData';
 import { ErrorMessages } from '@/utils/constants';
+
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Dimensions,
   RefreshControl,

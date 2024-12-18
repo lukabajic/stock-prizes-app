@@ -33,6 +33,9 @@ const styles = StyleSheet.create({
     lineHeight: 48,
     fontWeight: 700,
     textAlign: 'center',
+    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    textShadowOffset: { width: 0, height: 10 },
+    textShadowRadius: 15,
   },
   sectionSeparator: {
     height: 24,
@@ -43,5 +46,8 @@ const styles = StyleSheet.create({
   sectionHeaderText: {
     fontSize: 24,
     fontWeight: 600,
+    textShadowColor: 'rgba(0, 0, 0, 0.25)',
+    textShadowOffset: { width: 0, height: 25 },
+    textShadowRadius: 50,
   },
 });
