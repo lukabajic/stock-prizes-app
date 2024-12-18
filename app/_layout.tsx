@@ -11,7 +11,7 @@ import {
 import { useFonts } from 'expo-font';
 import { SplashScreen, Tabs, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, useColorScheme } from 'react-native';
+import { Platform, StyleSheet, View, useColorScheme } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function TabLayout() {
@@ -47,12 +47,14 @@ export default function TabLayout() {
             tabBarActiveTintColor: Colors[colorScheme ?? 'light'].primary,
             headerShown: false,
             tabBarButton: HapticTab,
-            tabBarBackground: () => Colors[colorScheme ?? 'light'].background,
             tabBarStyle: Platform.select({
               ios: {
                 position: 'absolute',
+                backgroundColor: Colors[colorScheme ?? 'light'].background,
               },
-              default: {},
+              default: {
+                backgroundColor: Colors[colorScheme ?? 'light'].background,
+              },
             }),
           }}
         >
