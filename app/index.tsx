@@ -2,8 +2,6 @@ import {
   RefreshControl,
   SectionList,
   StyleSheet,
-  Image,
-  ImageBackground,
   View,
   Dimensions,
 } from 'react-native';
