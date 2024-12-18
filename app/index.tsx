@@ -55,7 +55,7 @@ export default function HomeScreen() {
 
       /**
        * Since I'm handling the responses from alphavantage
-       * API on my API this is going to be either 
+       * API on my API this is going to be either
        * { data: MarketData, error: null } or
        * { data: null, error: ErrorMessages }
        */
