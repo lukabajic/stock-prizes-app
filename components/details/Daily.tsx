@@ -1,10 +1,10 @@
-import { StyleSheet, View } from "react-native";
-import { IconSymbol } from "@/components/ui/IconSymbol.ios";
-import { TR, TD, Table } from "@/components/ui/Table";
-import { useThemeColor } from "@/hooks/useThemeColor";
-import { ThemedText } from "@/components/ThemedText";
-import { DailyData, Keys } from "@/types/marketData";
-import { formatVolume } from "@/types/formatters";
+import { StyleSheet, View } from 'react-native';
+import { IconSymbol } from '@/components/ui/IconSymbol.ios';
+import { TR, TD, Table } from '@/components/ui/Table';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { ThemedText } from '@/components/ThemedText';
+import { DailyData, Keys } from '@/types/marketData';
+import { formatVolume } from '@/types/formatters';
 
 interface DailyProps {
   lastRefreshed: string;
@@ -12,8 +12,8 @@ interface DailyProps {
 }
 
 export const Daily: React.FC<DailyProps> = ({ lastRefreshed, dailyData }) => {
-  const borderColor = useThemeColor({}, "border");
-  const textColor = useThemeColor({}, "text");
+  const borderColor = useThemeColor({}, 'border');
+  const textColor = useThemeColor({}, 'text');
 
   return (
     <View style={[styles.daily, { borderTopColor: borderColor }]}>
@@ -80,13 +80,11 @@ export const Daily: React.FC<DailyProps> = ({ lastRefreshed, dailyData }) => {
 
 const styles = StyleSheet.create({
   daily: {
-    paddingTop: 24,
-    marginTop: 24,
-    borderTopWidth: 1,
+    marginBottom: 48,
   },
   iconAndSubtitle: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 8,
   },
   icon: {
