@@ -2,12 +2,29 @@
 
 ## Project Overview
 
-The Stock Price Tracker is a React Native application designed to fetch and display real-time stock prices. It provides key metrics, meaningful changes, and detailed stock information in an intuitive interface. The app uses the Alpha Vantage API for stock data, with a custom backend hosted on Heroku to handle caching for better performance.
+The Stock Price Tracker is a React Native application designed to fetch and display real-time stock prices. It provides key metrics, meaningful changes, and detailed stock information in an intuitive interface. The app uses the Alpha Vantage API for stock data, with a custom backend hosted on Heroku to handle caching for better performance.  
+The Alpha Vantage API has a 25 requests limit on the free plan.
 
 ## Features
 
-- **Home Screen**: Displays top gainers, top losers, and the most actively traded stocks with a refresh functionality.
-- **Details Screen**: Shows comprehensive details about a specific stock, including daily performance, historical price trends, and company information.
+- **Home Screen**:
+  - Displays top gainers, top losers, and the most actively traded stocks.
+  - Includes a refresh functionality for updated data.
+  - Features design improvements with consistent styling and better error handling.
+- **Details Screen**:
+  - Offers comprehensive stock details, including daily performance, historical price trends, and company information.
+  - Includes reusable components for consistency.
+- **Reusable Components**:
+  - A `Button` component and `Loader` for shared functionality across screens.
+  - A reusable `Section` component to enhance the Details page design.
+
+## Recent Updates
+
+- Improved formatting and consistency across all files.
+- Enhanced UI with new icons and better color schemes.
+- Added new props to components for increased flexibility.
+- Optimized the error screen with a detailed implementation.
+- Improved performance with caching on the backend and optimized API requests.
 
 ## Directory Structure
 
@@ -36,8 +53,8 @@ The Stock Price Tracker is a React Native application designed to fetch and disp
 ## Backend Implementation
 
 The backend server, implemented using Express and Redis, provides:
-GitHub: https://github.com/lukabajic/simple-express-server/blob/main/server.js
-URL: https://simple-express-redis-app-56cdbd82e511.herokuapp.com
+GitHub: [Express Server](https://github.com/lukabajic/simple-express-server/blob/main/server.js)  
+URL: [Live Server](https://simple-express-redis-app-56cdbd82e511.herokuapp.com)
 
 ### Routes
 
@@ -81,20 +98,22 @@ URL: https://simple-express-redis-app-56cdbd82e511.herokuapp.com
 
 ## Testing
 
-The app has been tested only on an **iPhone 12** using the Expo Go app. Further testing is recommended for other devices and simulators.
+- Tested on **iPhone 12** using Expo Go.
+- Known limitation: Due to API request limits, only the top three items on each section of the home page have accurate data.
 
 ## Development Notes
 
-- **Tools Used**: Developed using [Visual Studio Code](https://code.visualstudio.com/).
-- **Backend Hosting**: Backend is hosted on Heroku with Redis for caching.
-- **Expo**: Allows seamless development and testing on mobile devices.
+- **Design Improvements**: Applied consistent formatting, new icons, and enhanced error handling.
+- **Reusable Components**: Simplified the codebase with reusable UI components.
+- **Backend Hosting**: Hosted on Heroku with Redis for caching.
+- **Expo**: Ensures seamless development and testing on mobile devices.
 
 ## Acknowledgments
 
-- **ChatGPT**: Used extensively to:
-  - Analyze Alpha Vantage API data.
-  - Design the home and details screens.
-  - Accelerate coding tasks and debugging.
-  - Draft this README.md file.
+- **ChatGPT**: Contributed to:
+  - Analyzing Alpha Vantage API data.
+  - Designing the home and details screens.
+  - Accelerating debugging and feature implementation.
+  - Drafting this README.md file.
 
-Feel free to explore application!
+Feel free to explore the application!
