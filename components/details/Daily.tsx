@@ -1,6 +1,6 @@
 import { TR, TD, Table } from '@/components/ui/Table';
 import { DailyData, Keys } from '@/types/marketData';
-import { formatVolume } from '@/types/formatters';
+import { formatVolume } from '@/utils/formatters';
 import { Section } from './Section';
 
 interface DailyProps {
