@@ -104,46 +104,51 @@ export default function HomeScreen() {
     bottomTabBarHeight
   );
 
-  return (
-    <ThemedView style={styles.container}>
-      {loading ? (
+  if (loading) {
+    return (
+      <ThemedView style={styles.container}>
         <Loader />
-      ) : error ? (
+      </ThemedView>
+    );
+  }
+
+  if (error)
+    return (
+      <ThemedView style={styles.container}>
         <Error onButtonPress={initialLoad} buttonText="Try again">
           {error}
         </Error>
-      ) : (
-        <View style={styles.container}>
-          <SvgBackground style={styles.svgBackground} />
+      </ThemedView>
+    );
 
-          <SectionList
-            style={[styles.sectionList]}
-            contentContainerStyle={{
-              paddingTop: 40 + topInset,
-              paddingBottom: bottomInset + bottomTabBarHeight,
-            }}
-            contentInset={{ top: topInset }}
-            contentOffset={{ y: -topInset, x: 0 }}
-            sections={sections}
-            keyExtractor={(item: Ticker) => item.ticker}
-            renderItem={({ item }) => <ListItem data={item} />}
-            ItemSeparatorComponent={ItemSeparator}
-            SectionSeparatorComponent={SectionSeparator}
-            ListHeaderComponent={ListHeaderComponent}
-            stickySectionHeadersEnabled={false}
-            renderSectionHeader={({ section }) => (
-              <SectionHeaderComponent title={section.title} />
-            )}
-            refreshControl={
-              <RefreshControl
-                tintColor={primary}
-                refreshing={refreshing}
-                onRefresh={onRefresh}
-              />
-            }
-          />
-        </View>
-      )}
+  return (
+    <ThemedView style={styles.container}>
+      <View style={styles.container}>
+        <SvgBackground style={styles.svgBackground} />
+
+        <SectionList
+          style={[styles.sectionList, { paddingTop: 40 + topInset }]}
+          contentInset={{ top: topInset }}
+          contentOffset={{ y: -topInset, x: 0 }}
+          sections={sections}
+          keyExtractor={(item: Ticker) => item.ticker}
+          renderItem={({ item }) => <ListItem data={item} />}
+          ItemSeparatorComponent={ItemSeparator}
+          SectionSeparatorComponent={SectionSeparator}
+          ListHeaderComponent={ListHeaderComponent}
+          stickySectionHeadersEnabled={false}
+          renderSectionHeader={({ section }) => (
+            <SectionHeaderComponent title={section.title} />
+          )}
+          refreshControl={
+            <RefreshControl
+              tintColor={primary}
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }
+        />
+      </View>
     </ThemedView>
   );
 }
