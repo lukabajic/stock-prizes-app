@@ -1,21 +1,20 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import React, { useCallback, useEffect, useState } from 'react';
 
+import { Error } from '@/components/Error';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { Chart } from '@/components/details/Chart';
+import { Daily } from '@/components/details/Daily';
+import { Header } from '@/components/details/Header';
+import { KeyMetrics } from '@/components/details/KeyMetrics';
+import { Overview } from '@/components/details/Overview';
+import { Ratings } from '@/components/details/Ratings';
+import { Target } from '@/components/details/Target';
+import { Loader } from '@/components/ui/Loader';
 import { fetchStockDetails } from '@/services/alphavantage';
-import { useCallback, useEffect, useState } from 'react';
 import { Keys, StockDetails } from '@/types/marketData';
 import { ErrorMessages } from '@/utils/constants';
-import { Loader } from '@/components/ui/Loader';
-import { Error } from '@/components/Error';
-import { Header } from '@/components/details/Header';
-import { Daily } from '@/components/details/Daily';
-import { KeyMetrics } from '@/components/details/KeyMetrics';
-import { Ratings } from '@/components/details/Ratings';
-import { Overview } from '@/components/details/Overview';
-import { Chart } from '@/components/details/Chart';
-import { Target } from '@/components/details/Target';
+import { useLocalSearchParams } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
 
 type RouteParams = {
   ticker: string;

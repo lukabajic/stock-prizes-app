@@ -1,4 +1,5 @@
 import { StyleSheet, Text } from 'react-native';
+
 import { ThemedText } from '../ThemedText';
 import { Section } from './Section';
 

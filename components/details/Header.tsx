@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { Ticker } from '@/types/marketData';
-import { ThemedText } from '../ThemedText';
 import { formatPercentage } from '@/utils/formatters';
+import { StyleSheet, Text, View } from 'react-native';
+
+import { ThemedText } from '../ThemedText';
 import { Section } from './Section';
 
 interface HeaderProps extends Omit<Ticker, 'volume'> {

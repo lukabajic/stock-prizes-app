@@ -158,7 +158,7 @@ This is a task list I created for myself while analyzing the requirements and te
 - [ ] error logger
 - [x] details page - key metrics
 - [x] details page - analyst ratings
-- [ ] details page - target section
+- [x] details page - target section
 - [ ] use better fonts
 - [ ] import formatter
 - [ ] check expo-haptics

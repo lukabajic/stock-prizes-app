@@ -1,6 +1,7 @@
 import { Table } from '@/components/ui/Table';
-import { Section } from './Section';
 import { formatVolume } from '@/utils/formatters';
+
+import { Section } from './Section';
 
 interface KeyMetricsProps {
   marketCap?: string;

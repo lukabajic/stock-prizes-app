@@ -1,4 +1,5 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+
 import { ThemedText } from '../ThemedText';
 
 export const ItemSeparator: React.FC = () => (

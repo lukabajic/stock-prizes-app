@@ -1,11 +1,11 @@
-import { View, Text } from 'react-native';
-import { StyleSheet } from 'react-native';
-
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { Ticker } from '@/types/marketData';
-import { ThemedText } from '../ThemedText';
-import { Link } from 'expo-router';
 import { formatPercentage, formatVolume } from '@/utils/formatters';
+import { Link } from 'expo-router';
+import { Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { ThemedText } from '../ThemedText';
 
 type ListItemProps = {
   data: Ticker;

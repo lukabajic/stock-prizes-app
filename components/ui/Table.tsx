@@ -1,5 +1,6 @@
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { StyleSheet, View } from 'react-native';
+
 import { ThemedText } from '../ThemedText';
 
 interface ColumnConfig {

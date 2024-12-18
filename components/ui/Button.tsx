@@ -1,9 +1,9 @@
 import { useThemeColor } from '@/hooks/useThemeColor';
 import {
-  TouchableOpacity,
-  TouchableOpacityProps,
   StyleSheet,
   Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
 } from 'react-native';
 import { StylePropsWithArrayTransform } from 'react-native-reanimated/lib/typescript/layoutReanimation/animationBuilder/commonTypes';
 

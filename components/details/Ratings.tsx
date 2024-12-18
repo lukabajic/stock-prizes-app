@@ -1,4 +1,5 @@
 import { Table } from '@/components/ui/Table';
+
 import { Section } from './Section';
 
 interface RatingsProps {

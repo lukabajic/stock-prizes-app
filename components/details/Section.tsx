@@ -1,8 +1,9 @@
 import { PropsWithChildren } from 'react';
-import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
+
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol, IconSymbolName } from '@/components/ui/IconSymbol';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
 
 interface SectionProps extends PropsWithChildren {
   icon: IconSymbolName;
