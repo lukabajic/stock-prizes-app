@@ -1,45 +1,45 @@
-import { useThemeColor } from "@/hooks/useThemeColor";
+import { useThemeColor } from '@/hooks/useThemeColor';
 import {
   TouchableOpacity,
   TouchableOpacityProps,
   StyleSheet,
   Text,
-} from "react-native";
-import { StylePropsWithArrayTransform } from "react-native-reanimated/lib/typescript/layoutReanimation/animationBuilder/commonTypes";
+} from 'react-native';
+import { StylePropsWithArrayTransform } from 'react-native-reanimated/lib/typescript/layoutReanimation/animationBuilder/commonTypes';
 
 type ButtonProps = TouchableOpacityProps & {
-  variant?: "outlined" | "contained";
-  color?: "primary" | "error";
+  variant?: 'outlined' | 'contained';
+  color?: 'primary' | 'error';
   children: string;
   fluid?: boolean;
 };
 
-const white = "rgb(255, 255, 255)";
-const transparent = "transparent";
+const white = 'rgb(255, 255, 255)';
+const transparent = 'transparent';
 
 export const Button: React.FC<ButtonProps> = ({
   children,
-  variant = "contained",
-  color = "primary",
+  variant = 'contained',
+  color = 'primary',
   fluid = true,
   ...rest
 }) => {
-  const primary = useThemeColor({}, "primary");
-  const error = useThemeColor({}, "notification");
+  const primary = useThemeColor('primary');
+  const error = useThemeColor('notification');
 
   const backgroundColor =
-    variant === "contained"
-      ? color === "primary"
+    variant === 'contained'
+      ? color === 'primary'
         ? primary
         : error
       : transparent;
 
   const textColor =
-    variant === "contained" ? white : color === "primary" ? primary : error;
+    variant === 'contained' ? white : color === 'primary' ? primary : error;
 
   const borderColor =
-    variant === "outlined"
-      ? color === "primary"
+    variant === 'outlined'
+      ? color === 'primary'
         ? primary
         : error
       : transparent;
@@ -54,7 +54,7 @@ export const Button: React.FC<ButtonProps> = ({
         {
           backgroundColor,
           borderColor,
-          borderWidth: variant === "outlined" ? 2 : 0,
+          borderWidth: variant === 'outlined' ? 2 : 0,
         },
       ]}
       {...rest}
@@ -69,14 +69,14 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   fluid: {
-    width: "100%",
+    width: '100%',
   },
 });

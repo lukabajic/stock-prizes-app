@@ -18,7 +18,7 @@ export const Section: React.FC<SectionProps> = ({
   titleStyles = {},
   sectionStyles = {},
 }) => {
-  const textColor = useThemeColor({}, 'text');
+  const textColor = useThemeColor('text');
 
   return (
     <View style={[styles.wrapper, sectionStyles]}>

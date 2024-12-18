@@ -1,8 +1,8 @@
-import { useThemeColor } from "@/hooks/useThemeColor";
-import { PropsWithChildren } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { StylePropsWithArrayTransform } from "react-native-reanimated/lib/typescript/layoutReanimation/animationBuilder/commonTypes";
-import { ThemedText } from "../ThemedText";
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { PropsWithChildren } from 'react';
+import { StyleSheet, View, ViewStyle } from 'react-native';
+import { StylePropsWithArrayTransform } from 'react-native-reanimated/lib/typescript/layoutReanimation/animationBuilder/commonTypes';
+import { ThemedText } from '../ThemedText';
 
 interface TRProps extends PropsWithChildren {
   borderBottom?: boolean;
@@ -15,12 +15,12 @@ interface TDProps extends PropsWithChildren {
 }
 
 export const Table: React.FC<PropsWithChildren> = ({ children }) => {
-  const borderColor = useThemeColor({}, "border");
+  const borderColor = useThemeColor('border');
   return <View style={[styles.table, { borderColor }]}>{children}</View>;
 };
 
 export const TR: React.FC<TRProps> = ({ children, borderBottom = false }) => {
-  const borderColor = useThemeColor({}, "border");
+  const borderColor = useThemeColor('border');
 
   const trStyles: StylePropsWithArrayTransform[] = [styles.tr];
 
@@ -37,8 +37,8 @@ export const TD: React.FC<TDProps> = ({
   bold = false,
   background = false,
 }) => {
-  const borderColor = useThemeColor({}, "border");
-  const backgroundColor = useThemeColor({}, "card");
+  const borderColor = useThemeColor('border');
+  const backgroundColor = useThemeColor('card');
 
   const tdStyles: ViewStyle[] = [styles.td];
 
@@ -65,10 +65,10 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   tr: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   td: {
-    width: "50%",
+    width: '50%',
     padding: 8,
   },
 });

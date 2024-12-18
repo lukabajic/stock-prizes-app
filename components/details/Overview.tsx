@@ -17,7 +17,7 @@ export const Overview: React.FC<OverviewProps> = ({
   website,
   description,
 }) => {
-  const primaryColor = useThemeColor({}, 'primary');
+  const primaryColor = useThemeColor('primary');
 
   return (
     <Section title="Company Overview" icon="building.2.fill">

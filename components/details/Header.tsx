@@ -16,9 +16,9 @@ export const Header: React.FC<HeaderProps> = ({
   ticker,
   Name,
 }) => {
-  const primaryColor = useThemeColor({}, 'primary');
-  const errorColor = useThemeColor({}, 'notification');
-  const cardColor = useThemeColor({}, 'card');
+  const primaryColor = useThemeColor('primary');
+  const errorColor = useThemeColor('notification');
+  const cardColor = useThemeColor('card');
 
   const changeColor = Number(change_amount) > 0 ? primaryColor : errorColor;
 

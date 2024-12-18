@@ -13,6 +13,7 @@ const MAPPING = {
   'chart.bar.fill': 'bar-chart',
   'chart.line.uptrend.xyaxis': 'show-chart',
   'building.2.fill': 'business',
+  'chevron.backward': 'arrow-back',
 } as Partial<
   Record<
     import('expo-symbols').SymbolViewProps['name'],

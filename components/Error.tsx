@@ -1,9 +1,9 @@
-import { PropsWithChildren } from "react";
-import { Text, View, StyleSheet, TouchableOpacityProps } from "react-native";
+import { PropsWithChildren } from 'react';
+import { Text, View, StyleSheet, TouchableOpacityProps } from 'react-native';
 
-import { useThemeColor } from "@/hooks/useThemeColor";
-import { Button } from "@/components/ui/Button";
-import { IconSymbol } from "@/components/ui/IconSymbol";
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { Button } from '@/components/ui/Button';
+import { IconSymbol } from '@/components/ui/IconSymbol';
 
 type ErrorPropsWithoutButton = PropsWithChildren & {
   onButtonPress?: never;
@@ -11,7 +11,7 @@ type ErrorPropsWithoutButton = PropsWithChildren & {
 };
 
 type ErrorPropsWithButton = PropsWithChildren & {
-  onButtonPress: TouchableOpacityProps["onPress"];
+  onButtonPress: TouchableOpacityProps['onPress'];
   buttonText: string;
 };
 
@@ -22,7 +22,7 @@ export const Error: React.FC<ErrorProps> = ({
   buttonText,
   children,
 }) => {
-  const errorColor = useThemeColor({}, "notification");
+  const errorColor = useThemeColor('notification');
 
   const hasButton = onButtonPress && buttonText;
 
@@ -57,24 +57,24 @@ export const Error: React.FC<ErrorProps> = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 24,
   },
   title: {
     fontSize: 24,
     lineHeight: 28,
     fontWeight: 600,
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 8,
   },
   text: {
     fontSize: 18,
     lineHeight: 24,
     fontWeight: 600,
-    textAlign: "center",
+    textAlign: 'center',
   },
   icon: {
     marginBottom: 24,

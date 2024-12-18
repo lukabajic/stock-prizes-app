@@ -44,7 +44,8 @@ const prepareSections = (data: MarketData | null) =>
 
 export default function HomeScreen() {
   const { top: topInset } = useSafeAreaInsets();
-  const primary = useThemeColor({}, 'primary');
+
+  const primary = useThemeColor('primary');
 
   const [data, setData] = useState<MarketData | null>(null);
   const [loading, setLoading] = useState(false);

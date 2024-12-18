@@ -34,8 +34,8 @@ const prepareChartData = (data: Record<string, DailyData>) => {
 };
 
 export const Chart: React.FC<ChartProps> = ({ chartData }) => {
-  const textColor = useThemeColor({}, 'text');
-  const backgroundColor = useThemeColor({}, 'background');
+  const textColor = useThemeColor('text');
+  const backgroundColor = useThemeColor('background');
 
   const data = useMemo(() => prepareChartData(chartData), [chartData]);
 
