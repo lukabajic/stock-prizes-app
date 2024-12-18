@@ -11,7 +11,6 @@ import {
 import { ListItem } from '@/components/home/ListItem';
 import { Loader } from '@/components/ui/Loader';
 import { SvgBackground } from '@/components/ui/SvgBackground';
-import { useBottomTabOverflow } from '@/components/ui/TabBarBackground';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { fetchTopGainersLosers } from '@/services/stocks';
 import { MarketData, Ticker } from '@/types/marketData';
