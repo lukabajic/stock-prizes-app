@@ -47,7 +47,6 @@ The Alpha Vantage API has a 25 requests limit on the free plan.
 ├── services
 ├── types
 ├── utils
-├── backend (backend server)
 ```
 
 ## Backend Implementation
@@ -80,6 +79,7 @@ URL: [Live Server](https://simple-express-redis-app-56cdbd82e511.herokuapp.com)
 ### Steps to Run Locally
 
 1. Clone the repository.
+
 2. Install dependencies:
    ```bash
    npm install
@@ -88,7 +88,8 @@ URL: [Live Server](https://simple-express-redis-app-56cdbd82e511.herokuapp.com)
    ```bash
    cp .env.example .env
    ```
-   Then replace the placeholder URL with the backend URL provided above
+   Then replace the placeholder URL with the backend URL provided above.
+
 4. Start the Expo development server:
    ```bash
    expo start
