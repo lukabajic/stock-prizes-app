@@ -17,8 +17,7 @@ export async function fetchTopGainersLosers(): Promise<
     const data: MarketData = await response.json();
 
     return { data, error: null };
-  } catch (e) {
-    console.log(e);
+  } catch {
     return { data: null, error: ErrorMessages.NETWORK_ERROR };
   }
 }
@@ -36,8 +35,7 @@ export async function fetchStockDetails(
     const data: StockDetails = await response.json();
 
     return { data, error: null };
-  } catch (e) {
-    console.log(e);
+  } catch {
     return { data: null, error: ErrorMessages.NETWORK_ERROR };
   }
 }

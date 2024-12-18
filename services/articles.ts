@@ -17,8 +17,7 @@ export async function fetchArticlesFeed(): Promise<
     const data: FeedResponse = await response.json();
 
     return { data, error: null };
-  } catch (e) {
-    console.log(e);
+  } catch {
     return { data: null, error: ErrorMessages.NETWORK_ERROR };
   }
 }
