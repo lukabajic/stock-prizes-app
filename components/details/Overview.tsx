@@ -1,14 +1,14 @@
 import { StyleSheet, Text } from 'react-native';
 import { Section } from './Section';
 import { ThemedText } from '../ThemedText';
-import { Link } from 'expo-router';
+import { ExternalPathString, Link } from 'expo-router';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 interface OverviewProps {
   sector: string;
   industry: string;
   description?: string;
-  website: string;
+  website?: ExternalPathString | 'None';
 }
 
 export const Overview: React.FC<OverviewProps> = ({
@@ -35,20 +35,22 @@ export const Overview: React.FC<OverviewProps> = ({
           <Text style={styles.thin}>{description}</Text>
         </ThemedText>
       )}
-      <ThemedText style={styles.row}>
-        <Text style={styles.bold}>Official Website</Text>:{' '}
-        {website === 'None' ? (
-          <Text style={styles.thin}>{website}</Text>
-        ) : (
-          <Link
-            href={website}
-            target="_blank"
-            style={[styles.link, { color: primaryColor }]}
-          >
-            {website}
-          </Link>
-        )}
-      </ThemedText>
+      {website && (
+        <ThemedText style={styles.row}>
+          <Text style={styles.bold}>Official Website</Text>:{' '}
+          {website === 'None' ? (
+            <Text style={styles.thin}>{website}</Text>
+          ) : (
+            <Link
+              href={website}
+              target="_blank"
+              style={[styles.link, { color: primaryColor }]}
+            >
+              {website}
+            </Link>
+          )}
+        </ThemedText>
+      )}
     </Section>
   );
 };
