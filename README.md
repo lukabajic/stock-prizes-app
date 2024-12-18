@@ -174,5 +174,7 @@ Spent around **12 hours** to complete this.
 
 What's here should be enough for the task assignment :)
 I opened a [PR](https://github.com/lukabajic/stock-prizes-app/pull/1) for the remaining changes and some improvements.
+Please try out `npx expo start` on that branch as well. I played around with some new expo features that I didn't try out before, `expo-routing` in paticular.
+And added some more content to the app.
 
 Feel free to explore the application!
