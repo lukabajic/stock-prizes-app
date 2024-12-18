@@ -3,14 +3,20 @@ import { useCallback, useEffect, useState } from 'react';
 import { Error } from '@/components/Error';
 import { ThemedView } from '@/components/ThemedView';
 import { ArticleCard } from '@/components/articles/ArticleCard';
-import { ItemSeparator } from '@/components/home/List';
+import { ItemSeparator, ListHeaderComponent } from '@/components/home/List';
 import { Loader } from '@/components/ui/Loader';
+import { SvgBackground } from '@/components/ui/SvgBackground';
 import { fetchArticlesFeed } from '@/services/articles';
 import { FeedResponse } from '@/types/articles';
 import { ErrorMessages } from '@/utils/constants';
-import { FlatList, StyleSheet } from 'react-native';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { Dimensions, FlatList, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function ArticlesIndex() {
+  const { top: topInset, bottom: bottomInset } = useSafeAreaInsets();
+  const bottomTabBarHeight = useBottomTabBarHeight();
+
   const [data, setData] = useState<FeedResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -53,13 +59,25 @@ export default function ArticlesIndex() {
     );
 
   return (
-    <FlatList
-      data={data.feed || []}
-      renderItem={({ item }) => <ArticleCard item={item} />}
-      keyExtractor={(_, index) => String(index)}
-      contentContainerStyle={styles.list}
-      ItemSeparatorComponent={ItemSeparator}
-    />
+    <ThemedView style={styles.container}>
+      <View style={styles.container}>
+        <SvgBackground style={styles.svgBackground} />
+
+        <FlatList
+          data={data.feed || []}
+          renderItem={({ item }) => <ArticleCard item={item} />}
+          keyExtractor={(_, index) => String(index)}
+          ItemSeparatorComponent={ItemSeparator}
+          contentContainerStyle={[
+            styles.list,
+            {
+              paddingTop: 40 + topInset,
+              paddingBottom: bottomInset + bottomTabBarHeight,
+            },
+          ]}
+        />
+      </View>
+    </ThemedView>
   );
 }
 
@@ -67,7 +85,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  svgBackground: {
+    ...StyleSheet.absoluteFillObject,
+    position: 'absolute',
+    top: 0,
+    left: 8,
+    right: 8,
+    width: Dimensions.get('screen').width - 16,
+  },
   list: {
-    padding: 24,
+    paddingHorizontal: 24,
   },
 });

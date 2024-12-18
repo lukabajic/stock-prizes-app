@@ -120,7 +120,11 @@ export default function HomeScreen() {
         <SvgBackground style={styles.svgBackground} />
 
         <SectionList
-          style={[styles.sectionList, { paddingTop: 40 + topInset }]}
+          style={styles.sectionList}
+          contentContainerStyle={{
+            paddingTop: 40 + topInset,
+            paddingBottom: bottomInset + bottomTabBarHeight,
+          }}
           contentInset={{ top: topInset }}
           contentOffset={{ y: -topInset, x: 0 }}
           sections={sections}
