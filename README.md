@@ -146,8 +146,8 @@ This is a task list I created for myself while analyzing the requirements and te
 - [x] details - chart section
 - [x] README.md
 - [x] fix activity indicator positioning
-- [ ] add a back button on details screen
- 
+- [x] add a back button on details screen
+
 ### Low Priority
 
 - [x] improve home design, add more content
@@ -165,5 +165,17 @@ This is a task list I created for myself while analyzing the requirements and te
 
 - [ ] translations
 - [ ] news tab
+
+## MVP and further improvements
+
+This is the last commit on the main/development branches:
+commit fbb817e169d712c68aec71cf433532cde4f391c9
+Author: lukabajic <lukabajic.dev@gmail.com>
+Date:   Wed Dec 18 13:08:52 2024 +0100
+
+Spent around **12 hours** to complete this. 
+
+What's here should be enough for the task assignment :)
+I opened a PR for the remaining changes and some improvements.
 
 Feel free to explore the application!
