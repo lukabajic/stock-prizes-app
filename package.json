@@ -7,8 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --watchAll",
-    "lint": "expo lint"
+    "prepare": "husky",
+    "type-check": "tsc --noEmit"
   },
   "jest": {
     "preset": "jest-expo"
