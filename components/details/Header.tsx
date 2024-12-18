@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { IconSymbol } from '@/components/ui/IconSymbol.ios';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { Ticker } from '@/types/marketData';
 import { ThemedText } from '../ThemedText';
 import { formatPercentage } from '@/types/formatters';
+import { Section } from './Section';
 
 interface HeaderProps extends Omit<Ticker, 'volume'> {
   Name: string;
@@ -18,23 +18,12 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const primaryColor = useThemeColor({}, 'primary');
   const errorColor = useThemeColor({}, 'notification');
-  const borderColor = useThemeColor({}, 'border');
-  const textColor = useThemeColor({}, 'text');
   const cardColor = useThemeColor({}, 'card');
 
   const changeColor = Number(change_amount) > 0 ? primaryColor : errorColor;
 
   return (
-    <View style={[styles.header, { borderBottomColor: borderColor }]}>
-      <View style={styles.iconAndSymbol}>
-        <IconSymbol
-          style={styles.icon}
-          name="tag.fill"
-          color={textColor}
-          size={40}
-        />
-        <ThemedText style={styles.ticker}>{ticker}</ThemedText>
-      </View>
+    <Section title={ticker} icon="tag.fill" titleStyles={styles.ticker}>
       <ThemedText style={styles.name}>{Name}</ThemedText>
       <View style={styles.data}>
         <ThemedText style={styles.priceText}>Current Price: </ThemedText>
@@ -50,21 +39,13 @@ export const Header: React.FC<HeaderProps> = ({
           </Text>
         </ThemedText>
       </View>
-    </View>
+    </Section>
   );
 };
 
 const styles = StyleSheet.create({
   header: {
     marginBottom: 48,
-  },
-  iconAndSymbol: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  icon: {
-    marginRight: 8,
   },
   ticker: {
     fontSize: 28,

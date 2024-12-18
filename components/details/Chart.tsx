@@ -1,7 +1,5 @@
-import { StyleSheet, View } from 'react-native';
-import { IconSymbol } from '@/components/ui/IconSymbol.ios';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { ThemedText } from '../ThemedText';
+import { Section } from '@/components/details/Section';
 import { DailyData, Keys } from '@/types/marketData';
 import { LineChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
@@ -36,26 +34,16 @@ const prepareChartData = (data: Record<string, DailyData>) => {
 };
 
 export const Chart: React.FC<ChartProps> = ({ chartData }) => {
-  const borderColor = useThemeColor({}, 'border');
   const textColor = useThemeColor({}, 'text');
   const backgroundColor = useThemeColor({}, 'background');
 
   const data = useMemo(() => prepareChartData(chartData), [chartData]);
 
   return (
-    <View style={[styles.daily, { borderTopColor: borderColor }]}>
-      <View style={styles.iconAndSubtitle}>
-        <IconSymbol
-          style={styles.icon}
-          name="chart.line.uptrend.xyaxis"
-          color={textColor}
-          size={40}
-        />
-        <ThemedText style={styles.subtitle}>
-          Price Chart (Last 30 Days)
-        </ThemedText>
-      </View>
-
+    <Section
+      title="Price Chart (Last 30 Days)"
+      icon="chart.line.uptrend.xyaxis"
+    >
       <LineChart
         data={{
           labels: data.labels,
@@ -78,23 +66,6 @@ export const Chart: React.FC<ChartProps> = ({ chartData }) => {
         withDots={false}
         bezier
       />
-    </View>
+    </Section>
   );
 };
-
-const styles = StyleSheet.create({
-  daily: {},
-  iconAndSubtitle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  icon: {
-    marginRight: 8,
-  },
-  subtitle: {
-    fontSize: 20,
-    lineHeight: 24,
-    fontWeight: 600,
-  },
-});

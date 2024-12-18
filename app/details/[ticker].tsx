@@ -1,16 +1,17 @@
-import { StyleSheet, View } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { StyleSheet, View } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
 
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { fetchStockDetails } from "@/services/alphavantage";
-import { useCallback, useEffect, useState } from "react";
-import { Keys, StockDetails } from "@/types/marketData";
-import { ErrorMessages } from "@/utils/constants";
-import { Loader } from "@/components/ui/Loader";
-import { Error } from "@/components/Error";
-import { Header } from "@/components/details/Header";
-import { Daily } from "@/components/details/Daily";
-import { Chart } from "@/components/details/Chart";
+import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { fetchStockDetails } from '@/services/alphavantage';
+import { useCallback, useEffect, useState } from 'react';
+import { Keys, StockDetails } from '@/types/marketData';
+import { ErrorMessages } from '@/utils/constants';
+import { Loader } from '@/components/ui/Loader';
+import { Error } from '@/components/Error';
+import { Header } from '@/components/details/Header';
+import { Daily } from '@/components/details/Daily';
+import { Overview } from '@/components/details/Overview';
+import { Chart } from '@/components/details/Chart';
 
 type RouteParams = {
   ticker: string;
@@ -70,6 +71,8 @@ export default function TabTwoScreen() {
           {data?.[Keys.TimeSeries] && (
             <Chart chartData={data[Keys.TimeSeries]} />
           )}
+
+          <Overview />
         </View>
       )}
     </ParallaxScrollView>
