@@ -159,8 +159,9 @@ This is a task list I created for myself while analyzing the requirements and te
 - [x] details page - key metrics
 - [x] details page - analyst ratings
 - [x] details page - target section
-- [ ] use better fonts
-- [ ] import formatter
+- [x] use better fonts
+- [x] import formatter
+- [x] add a pre commit file
 - [ ] check expo-haptics
 - [ ] check expo-blur
 - [ ] check expo-system-ui
