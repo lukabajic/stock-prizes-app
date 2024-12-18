@@ -31,8 +31,6 @@ export default function ArticlesIndex() {
     fetchData();
   }, []);
 
-  console.log(data);
-
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Home Screen</Text>
