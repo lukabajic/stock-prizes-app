@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     gap: 32,
 
     /**
-     * https://ethercreative.github.io/react-native-shadow-generator/
+     * https://ethercreative.github.io/react-native-shadow-generator/ (Bookmarked)
      * Nice tool that I use whenever I need box elevation on RN
      */
     shadowColor: '#000',

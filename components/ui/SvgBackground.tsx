@@ -1,6 +1,11 @@
 import * as React from 'react';
 import Svg, { SvgProps, G, Path, Circle } from 'react-native-svg';
 
+/**
+ * https://react-svgr.com/playground/?native=true&typescript=true (Bookmarked)
+ * Nice tool that I use to generatee SVG files for RN
+ */
+
 export const SvgBackground = (props: SvgProps) => (
   <Svg viewBox="175.7 78 490.6 436.9" {...props}>
     <G fill="#2a9d8f">
