@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "stock-price-app",
+    "name": "Stock Prices",
     "slug": "stock-price-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -16,11 +16,6 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
       "expo-router",
