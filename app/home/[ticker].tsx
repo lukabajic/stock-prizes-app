@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { Error } from '@/components/Error';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { ThemedView } from '@/components/ThemedView';
 import { Chart } from '@/components/details/Chart';
 import { Daily } from '@/components/details/Daily';
 import { Header } from '@/components/details/Header';
@@ -50,69 +51,73 @@ export default function TickerScreen() {
     fetchData();
   }, []);
 
+  if (loading) {
+    return (
+      <ThemedView style={styles.container}>
+        <Loader />
+      </ThemedView>
+    );
+  }
+
+  if (error || !data)
+    return (
+      <ThemedView style={styles.container}>
+        <Error onButtonPress={fetchData} buttonText="Try again">
+          {error || ErrorMessages.UNKNOWN_ERROR}
+        </Error>
+      </ThemedView>
+    );
+
   const lastRefreshed = data?.[Keys.MetaData]?.[Keys.LastRefreshed];
 
   return (
     <ParallaxScrollView>
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Error onButtonPress={fetchData} buttonText="Try again">
-          {error}
-        </Error>
-      ) : (
-        <View style={styles.data}>
-          {data && <Header {...params} ticker={ticker} Name={data.Name} />}
+      <View style={styles.data}>
+        <Header {...params} ticker={ticker} Name={data.Name} />
 
-          {lastRefreshed && (
-            <Daily
-              lastRefreshed={lastRefreshed}
-              dailyData={data[Keys.TimeSeries][lastRefreshed]}
-            />
-          )}
+        {lastRefreshed && (
+          <Daily
+            lastRefreshed={lastRefreshed}
+            dailyData={data[Keys.TimeSeries][lastRefreshed]}
+          />
+        )}
 
-          {data?.[Keys.TimeSeries] && (
-            <Chart chartData={data[Keys.TimeSeries]} />
-          )}
+        {data?.[Keys.TimeSeries] && <Chart chartData={data[Keys.TimeSeries]} />}
 
-          {data && (
-            <Overview
-              sector={data.Sector}
-              industry={data.Industry}
-              description={data.Description}
-              website={data.OfficialSite}
-            />
-          )}
+        <Overview
+          sector={data.Sector}
+          industry={data.Industry}
+          description={data.Description}
+          website={data.OfficialSite}
+        />
 
-          {data && (
-            <KeyMetrics
-              marketCap={data.MarketCapitalization}
-              pERatio={data.PeRatio}
-              eps={data.Eps}
-              dividendYield={data.DividendYield}
-              fiftyTwoWeekHigh={data['52WeekHigh']}
-              fiftyTwoWeekLow={data['52WeekLow']}
-            />
-          )}
+        <KeyMetrics
+          marketCap={data.MarketCapitalization}
+          pERatio={data.PeRatio}
+          eps={data.Eps}
+          dividendYield={data.DividendYield}
+          fiftyTwoWeekHigh={data['52WeekHigh']}
+          fiftyTwoWeekLow={data['52WeekLow']}
+        />
 
-          {data && (
-            <Ratings
-              strongBuy={data.AnalystRatingStrongBuy}
-              buy={data.AnalystRatingBuy}
-              hold={data.AnalystRatingHold}
-              sell={data.AnalystRatingSell}
-              strongSell={data.AnalystRatingStrongSell}
-            />
-          )}
+        <Ratings
+          strongBuy={data.AnalystRatingStrongBuy}
+          buy={data.AnalystRatingBuy}
+          hold={data.AnalystRatingHold}
+          sell={data.AnalystRatingSell}
+          strongSell={data.AnalystRatingStrongSell}
+        />
 
-          {data && <Target targetPrice={data.AnalystRatingBuy} />}
-        </View>
-      )}
+        <Target targetPrice={data.AnalystRatingBuy} />
+      </View>
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   data: {
     paddingBottom: 80,
   },
