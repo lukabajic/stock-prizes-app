@@ -1,9 +1,10 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
-import { Section } from '@/components/details/Section';
-import { DailyData, Keys } from '@/types/marketData';
-import { LineChart } from 'react-native-chart-kit';
-import { Dimensions } from 'react-native';
 import { useMemo } from 'react';
+
+import { Section } from '@/components/details/Section';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { DailyData, Keys } from '@/types/marketData';
+import { Dimensions } from 'react-native';
+import { LineChart } from 'react-native-chart-kit';
 
 interface ChartProps {
   chartData: Record<string, DailyData>;

@@ -1,12 +1,8 @@
-import { MarketData, StockDetails } from "@/types/marketData";
-import { ErrorMessages } from "@/utils/constants";
+import { FetchResponse } from '@/types/general';
+import { MarketData, StockDetails } from '@/types/marketData';
+import { ErrorMessages } from '@/utils/constants';
 
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
-
-interface FetchResponse<T> {
-  data: T | null;
-  error: ErrorMessages | null;
-}
 
 export async function fetchTopGainersLosers(): Promise<
   FetchResponse<MarketData>
@@ -21,14 +17,13 @@ export async function fetchTopGainersLosers(): Promise<
     const data: MarketData = await response.json();
 
     return { data, error: null };
-  } catch (e) {
-    console.log(e);
+  } catch {
     return { data: null, error: ErrorMessages.NETWORK_ERROR };
   }
 }
 
 export async function fetchStockDetails(
-  ticker: string,
+  ticker: string
 ): Promise<FetchResponse<StockDetails>> {
   try {
     const response = await fetch(`${apiUrl}/company/${ticker}`);
@@ -40,8 +35,7 @@ export async function fetchStockDetails(
     const data: StockDetails = await response.json();
 
     return { data, error: null };
-  } catch (e) {
-    console.log(e);
+  } catch {
     return { data: null, error: ErrorMessages.NETWORK_ERROR };
   }
 }

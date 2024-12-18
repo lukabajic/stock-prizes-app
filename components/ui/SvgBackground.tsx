@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Svg, { SvgProps, G, Path, Circle } from 'react-native-svg';
+
+import Svg, { Circle, G, Path, SvgProps } from 'react-native-svg';
 
 /**
  * https://react-svgr.com/playground/?native=true&typescript=true (Bookmarked)

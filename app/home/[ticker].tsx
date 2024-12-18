@@ -1,20 +1,21 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import React, { useCallback, useEffect, useState } from 'react';
 
+import { Error } from '@/components/Error';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { fetchStockDetails } from '@/services/alphavantage';
-import { useCallback, useEffect, useState } from 'react';
+import { ThemedView } from '@/components/ThemedView';
+import { Chart } from '@/components/details/Chart';
+import { Daily } from '@/components/details/Daily';
+import { Header } from '@/components/details/Header';
+import { KeyMetrics } from '@/components/details/KeyMetrics';
+import { Overview } from '@/components/details/Overview';
+import { Ratings } from '@/components/details/Ratings';
+import { Target } from '@/components/details/Target';
+import { Loader } from '@/components/ui/Loader';
+import { fetchStockDetails } from '@/services/stocks';
 import { Keys, StockDetails } from '@/types/marketData';
 import { ErrorMessages } from '@/utils/constants';
-import { Loader } from '@/components/ui/Loader';
-import { Error } from '@/components/Error';
-import { Header } from '@/components/details/Header';
-import { Daily } from '@/components/details/Daily';
-import { Overview } from '@/components/details/Overview';
-import { Chart } from '@/components/details/Chart';
-import { useThemeColor } from '@/hooks/useThemeColor';
-import { ThemedView } from '@/components/ThemedView';
+import { useLocalSearchParams } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
 
 type RouteParams = {
   ticker: string;
@@ -23,7 +24,7 @@ type RouteParams = {
   change_percentage: string;
 };
 
-export default function TabTwoScreen() {
+export default function TickerScreen() {
   const { ticker, ...params } = useLocalSearchParams<RouteParams>();
 
   const [data, setData] = useState<StockDetails | null>(null);
@@ -89,6 +90,25 @@ export default function TabTwoScreen() {
           description={data.Description}
           website={data.OfficialSite}
         />
+
+        <KeyMetrics
+          marketCap={data.MarketCapitalization}
+          pERatio={data.PeRatio}
+          eps={data.Eps}
+          dividendYield={data.DividendYield}
+          fiftyTwoWeekHigh={data['52WeekHigh']}
+          fiftyTwoWeekLow={data['52WeekLow']}
+        />
+
+        <Ratings
+          strongBuy={data.AnalystRatingStrongBuy}
+          buy={data.AnalystRatingBuy}
+          hold={data.AnalystRatingHold}
+          sell={data.AnalystRatingSell}
+          strongSell={data.AnalystRatingStrongSell}
+        />
+
+        <Target targetPrice={data.AnalystRatingBuy} />
       </View>
     </ParallaxScrollView>
   );
@@ -99,7 +119,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   data: {
-    // paddingTop: 40,
     paddingBottom: 80,
   },
 });

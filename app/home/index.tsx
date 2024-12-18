@@ -1,28 +1,29 @@
-import {
-  RefreshControl,
-  SectionList,
-  StyleSheet,
-  View,
-  Dimensions,
-} from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Error } from '@/components/Error';
 import { ThemedView } from '@/components/ThemedView';
-import { fetchTopGainersLosers } from '@/services/alphavantage';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { MarketData, Ticker } from '@/types/marketData';
-import { ErrorMessages } from '@/utils/constants';
-import { ListItem } from '@/components/home/ListItem';
 import {
   ItemSeparator,
   ListHeaderComponent,
   SectionHeaderComponent,
   SectionSeparator,
 } from '@/components/home/List';
+import { ListItem } from '@/components/home/ListItem';
 import { Loader } from '@/components/ui/Loader';
-import { useThemeColor } from '@/hooks/useThemeColor';
 import { SvgBackground } from '@/components/ui/SvgBackground';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { fetchTopGainersLosers } from '@/services/stocks';
+import { MarketData, Ticker } from '@/types/marketData';
+import { ErrorMessages } from '@/utils/constants';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import {
+  Dimensions,
+  RefreshControl,
+  SectionList,
+  StyleSheet,
+  View,
+} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const prepareSections = (data: MarketData | null) =>
   data
@@ -43,7 +44,8 @@ const prepareSections = (data: MarketData | null) =>
     : [];
 
 export default function HomeScreen() {
-  const { top: topInset } = useSafeAreaInsets();
+  const { top: topInset, bottom: bottomInset } = useSafeAreaInsets();
+  const bottomTabBarHeight = useBottomTabBarHeight();
 
   const primary = useThemeColor('primary');
 
@@ -118,7 +120,11 @@ export default function HomeScreen() {
         <SvgBackground style={styles.svgBackground} />
 
         <SectionList
-          style={[styles.sectionList, { paddingTop: 40 + topInset }]}
+          style={styles.sectionList}
+          contentContainerStyle={{
+            paddingTop: 40 + topInset,
+            paddingBottom: bottomInset + bottomTabBarHeight,
+          }}
           contentInset={{ top: topInset }}
           contentOffset={{ y: -topInset, x: 0 }}
           sections={sections}

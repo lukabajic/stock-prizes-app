@@ -1,8 +1,9 @@
-import { StyleSheet, Text } from 'react-native';
-import { Section } from './Section';
-import { ThemedText } from '../ThemedText';
-import { ExternalPathString, Link } from 'expo-router';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { ExternalPathString, Link } from 'expo-router';
+import { StyleSheet, Text } from 'react-native';
+
+import { ThemedText } from '../ThemedText';
+import { Section } from './Section';
 
 interface OverviewProps {
   sector: string;

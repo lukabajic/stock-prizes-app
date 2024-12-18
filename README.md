@@ -85,9 +85,11 @@ URL: [Live Server](https://simple-express-redis-app-56cdbd82e511.herokuapp.com)
    npm install
    ```
 3. Create the .env file
+
    ```bash
    cp .env.example .env
    ```
+
    Then replace the placeholder URL with the backend URL provided above.
 
 4. Start the Expo development server:
@@ -154,23 +156,24 @@ This is a task list I created for myself while analyzing the requirements and te
 
 - [x] improve home design, add more content
 - [ ] error logger
-- [ ] details page - key metrics
-- [ ] details page - analyst ratings
-- [ ] details page - target section
-- [ ] use better fonts
-- [ ] import formatter
-- [ ] check expo-haptics
-- [ ] check expo-blur
-- [ ] check expo-system-ui
+- [x] details page - key metrics
+- [x] details page - analyst ratings
+- [x] details page - target section
+- [x] use better fonts
+- [x] import formatter
+- [x] add a pre commit file
+- [x] checkout expo-haptics
+- [x] checkout expo-blur
+- [x] checkout expo-system-ui
 
 ### Optional
 
 - [ ] translations
-- [ ] news tab
+- [x] news tab
 
 ## MVP and further improvements
 
-Spent around **12 hours** to complete this. 
+Spent around **12 hours** to complete this.
 
 What's here should be enough for the task assignment :)
 I opened a [PR](https://github.com/lukabajic/stock-prizes-app/pull/1) for the remaining changes and some improvements.

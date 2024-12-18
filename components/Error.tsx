@@ -1,9 +1,9 @@
 import { PropsWithChildren } from 'react';
-import { Text, View, StyleSheet, TouchableOpacityProps } from 'react-native';
 
-import { useThemeColor } from '@/hooks/useThemeColor';
 import { Button } from '@/components/ui/Button';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { StyleSheet, Text, TouchableOpacityProps, View } from 'react-native';
 
 type ErrorPropsWithoutButton = PropsWithChildren & {
   onButtonPress?: never;

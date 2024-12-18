@@ -1,31 +1,31 @@
+import React, { useEffect } from 'react';
+
+import { HapticTab } from '@/components/HapticTab';
+import { IconSymbol } from '@/components/ui/IconSymbol';
+import { Colors } from '@/constants/Colors';
 import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider,
 } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
+import { SplashScreen, Tabs, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View, useColorScheme } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import 'react-native-reanimated';
 
-import { useColorScheme } from 'react-native';
-
-import { Colors } from '@/constants/Colors';
-
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
+export default function TabLayout() {
   const colorScheme = useColorScheme() ?? 'light';
+  const router = useRouter();
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require('../assets/fonts/Montserrat-VariableFont_wght.ttf'),
   });
 
   useEffect(() => {
-    if (loaded) SplashScreen.hideAsync();
+    if (loaded) {
+      SplashScreen.hideAsync();
+      router.replace('/home');
+    }
   }, [loaded]);
 
   if (!loaded) {
@@ -42,18 +42,41 @@ export default function RootLayout() {
           colors: { ...NavigationTheme.colors, ...Colors[colorScheme] },
         }}
       >
-        <Stack>
-          <Stack.Screen
-            name="details/[ticker]"
-            options={{ headerBackTitle: 'Back', headerTitle: '' }}
-          />
-          <Stack.Screen
-            name="index"
+        <Tabs
+          screenOptions={{
+            tabBarActiveTintColor: Colors[colorScheme ?? 'light'].primary,
+            headerShown: false,
+            tabBarButton: HapticTab,
+            tabBarStyle: Platform.select({
+              ios: {
+                position: 'absolute',
+                backgroundColor: Colors[colorScheme ?? 'light'].background,
+              },
+              default: {
+                backgroundColor: Colors[colorScheme ?? 'light'].background,
+              },
+            }),
+          }}
+        >
+          <Tabs.Screen
+            name="home"
             options={{
-              headerShown: false,
+              title: 'Home',
+              tabBarIcon: ({ color }) => (
+                <IconSymbol size={28} name="house.fill" color={color} />
+              ),
             }}
           />
-        </Stack>
+          <Tabs.Screen
+            name="articles"
+            options={{
+              title: 'News',
+              tabBarIcon: ({ color }) => (
+                <IconSymbol size={28} name="newspaper.fill" color={color} />
+              ),
+            }}
+          />
+        </Tabs>
         <StatusBar style="auto" />
       </ThemeProvider>
     </GestureHandlerRootView>
