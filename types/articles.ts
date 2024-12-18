@@ -1,16 +1,16 @@
-type Topic = {
+interface Topic {
   topic: string;
   relevance_score: number;
-};
+}
 
-type TickerSentiment = {
+interface TickerSentiment {
   ticker: string;
   relevance_score: number;
   ticker_sentiment_score: number;
   ticker_sentiment_label: string;
-};
+}
 
-type Article = {
+interface Article {
   title: string;
   url: string;
   time_published: string;
@@ -24,21 +24,21 @@ type Article = {
   overall_sentiment_score: number;
   overall_sentiment_label: string;
   ticker_sentiment: TickerSentiment[];
-};
+}
 
-type SentimentScoreDefinition = {
+interface SentimentScoreDefinition {
   bearish: string;
   somewhat_bearish: string;
   neutral: string;
   somewhat_bullish: string;
   bullish: string;
-};
+}
 
 type RelevanceScoreDefinition = string;
 
-type FeedResponse = {
+export interface FeedResponse {
   items: number;
   sentiment_score_definition: SentimentScoreDefinition;
   relevance_score_definition: RelevanceScoreDefinition;
   feed: Article[];
-};
+}
